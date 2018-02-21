@@ -148,6 +148,12 @@
   <ItemGroup>
     <ClCompile Include="SimUDuck.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DanceBehavior.h" />
+    <ClInclude Include="Ducks.h" />
+    <ClInclude Include="FlyBehavior.h" />
+    <ClInclude Include="QuackBehavior.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
