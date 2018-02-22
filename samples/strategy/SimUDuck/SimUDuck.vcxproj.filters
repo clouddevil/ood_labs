@@ -32,5 +32,8 @@
     <ClInclude Include="Ducks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DucksFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

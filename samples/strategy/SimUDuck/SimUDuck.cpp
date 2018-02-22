@@ -2,14 +2,28 @@
 #include <iostream>
 #include <memory>
 #include <vector>
+#include <functional>
 
 using namespace std;
+
+namespace l1
+{
 
 #include "DanceBehavior.h"
 #include "FlyBehavior.h"
 #include "QuackBehavior.h"
 #include "Ducks.h"
 
+}
+
+namespace l3
+{
+
+#include "DucksFunc.h"
+
+}
+
+template<typename Duck>
 void PlayWithDuck(Duck& duck)
 {
 	duck.Display();
@@ -21,6 +35,8 @@ void PlayWithDuck(Duck& duck)
 
 void main()
 {
+	using namespace l3;
+
 	MallardDuck mallarDuck;
 	PlayWithDuck(mallarDuck);
 

@@ -2,8 +2,7 @@
 
 class Duck
 {
-public:	
-
+public:
 	void SetFlyBehavior(unique_ptr<IFlyBehavior>&& flyBehavior)
 	{
 		m_flyBehavior = move(flyBehavior);
@@ -55,7 +54,8 @@ private:
 	unique_ptr<IDanceBehavior> m_danceBehavior;
 };
 
-class MallardDuck : public Duck
+class MallardDuck 
+	: public Duck
 {
 public:
 	MallardDuck()		
@@ -71,7 +71,8 @@ public:
 	}
 };
 
-class RedheadDuck : public Duck
+class RedheadDuck 
+	: public Duck
 {
 public:
 	RedheadDuck()		
@@ -87,7 +88,8 @@ public:
 	}
 };
 
-class DecoyDuck : public Duck
+class DecoyDuck 
+	: public Duck
 {
 public:	
 	void Display() const override
@@ -96,7 +98,8 @@ public:
 	}
 };
 
-class RubberDuck : public Duck
+class RubberDuck
+	: public Duck
 {
 public:
 	RubberDuck()		
@@ -110,7 +113,8 @@ public:
 	}	
 };
 
-class ModelDuck : public Duck
+class ModelDuck 
+	: public Duck
 {
 public:
 	ModelDuck()		
@@ -121,5 +125,5 @@ public:
 	void Display() const override
 	{
 		cout << "I'm model duck" << endl;
-	}	
+	}
 };
