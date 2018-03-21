@@ -3,24 +3,18 @@
 #include <set>
 #include <functional>
 
-/*
-Шаблонный интерфейс IObserver. Его должен реализовывать класс, 
-желающий получать уведомления от соответствующего IObservable
-Параметром шаблона является тип аргумента,
-передаваемого Наблюдателю в метод Update
-*/
+template <typename T>
+class IObservable;
+
+
 template <typename T>
 class IObserver
 {
 public:
-	virtual void Update(T const& data) = 0;
+	virtual void Update(IObservable<T> const& obj, T const& data) = 0;
 	virtual ~IObserver() = default;
 };
 
-/*
-Шаблонный интерфейс IObservable. Позволяет подписаться и отписаться на оповещения, а также
-инициировать рассылку уведомлений зарегистрированным наблюдателям.
-*/
 template <typename T>
 class IObservable
 {
@@ -76,7 +70,7 @@ public:
 		auto safeObservers(m_observers);
 		for (auto & v : safeObservers)
 		{
-			v.observer->Update(data);
+			v.observer->Update(*this, data);
 		}
 	}
 
