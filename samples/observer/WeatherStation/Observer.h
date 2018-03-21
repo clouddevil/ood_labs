@@ -49,12 +49,11 @@ public:
 template<typename T>
 bool operator<(ObserverWrapper<T> const& a, ObserverWrapper<T> const& b)
 {
+	auto rank = [](auto const& v) {
+		return std::make_tuple(v.priority, v.observer);
+	};
 	// reverse order
-	if (a.priority == b.priority)
-	{
-		return a.observer > b.observer;
-	}
-	return (a.priority > b.priority);
+	return rank(a) > rank(b);
 }
 
 // Реализация интерфейса IObservable
@@ -66,6 +65,7 @@ public:
 
 	void RegisterObserver(ObserverType & observer, int priority = 0) override
 	{		
+		RemoveObserver(observer);
 		m_observers.emplace(&observer, priority);
 	}
 
@@ -75,7 +75,7 @@ public:
 
 		auto safeObservers(m_observers);
 		for (auto & v : safeObservers)
-		{
+		{			
 			v.observer->Update(data);
 		}
 	}

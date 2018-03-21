@@ -1,3 +1,5 @@
+#pragma warning(disable: 4996 4512 4702 4100 4503)
+
 #include <functional>
 #include <map>
 #include <iostream>

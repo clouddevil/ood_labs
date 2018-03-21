@@ -19,3 +19,15 @@
 #pragma warning (disable:4456 4702)
 #include <boost/test/unit_test.hpp>
 #pragma warning (pop)
+
+
+#define _USE_MATH_DEFINES
+#include <cmath>
+#include <math.h>
+
+namespace std
+{
+
+std::ostream& operator<<(std::ostream& stream, std::vector<int> const& vec);
+
+}

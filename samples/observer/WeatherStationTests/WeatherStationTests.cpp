@@ -1,20 +1,6 @@
 #include "stdafx.h"
 #include "..\WeatherStation\WeatherData.h"
 
-namespace std
-{
-
-std::ostream& operator<<(std::ostream& stream, std::vector<int> const& vec)
-{
-	for (auto&& v : vec)
-	{
-		stream << std::to_string(v) << " ";
-	}
-	return stream;
-}
-
-}
-
 namespace
 {
 
@@ -89,7 +75,10 @@ BOOST_AUTO_TEST_CASE(ObserverNotificationPriority)
 	wd.RegisterObserver(observer2, observer2.priority);
 	wd.RegisterObserver(observer3, observer3.priority);
 	wd.RegisterObserver(observer4, observer4.priority);
+
 	wd.RegisterObserver(observer5, observer5.priority);
+	wd.RegisterObserver(observer5, 146); // register same object with other priority, replace it
+	wd.RegisterObserver(observer5, observer5.priority); // register same object with same priority	
 	wd.NotifyObservers();
 
 	std::vector<int> expectedOrder(order);
