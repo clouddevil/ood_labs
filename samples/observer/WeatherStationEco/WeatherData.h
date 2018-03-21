@@ -168,7 +168,7 @@ public:
 		m_info.humidity = humidity;
 		m_info.temperature = temp;
 		m_info.pressure = pressure;
-
+		// if !=
 		NotifyObservers(MEASUREMENTS_CHANGE_EVENT_ID);
 	}
 
@@ -176,7 +176,7 @@ public:
 	{
 		m_info.windSpeed = speed;
 		m_info.windDirection = direction;
-
+		// if !=
 		NotifyObservers(WIND_CHANGE_EVENT_ID);
 	}
 

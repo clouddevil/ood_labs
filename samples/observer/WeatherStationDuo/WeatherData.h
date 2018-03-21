@@ -16,10 +16,10 @@ struct SWeatherInfo
 
 struct SStatInfo
 {
-	double m_minValue = std::numeric_limits<double>::infinity();
-	double m_maxValue = -std::numeric_limits<double>::infinity();
-	double m_accValue = 0;
-	unsigned m_countAcc = 0;
+	double minValue = std::numeric_limits<double>::infinity();
+	double maxValue = -std::numeric_limits<double>::infinity();
+	double accValue = 0;
+	unsigned countAcc = 0;
 };
 
 class CDisplay: public IObserver<SWeatherInfo>
@@ -39,16 +39,16 @@ class Statistic
 public:		
 	void UpdateStatWith(double value)
 	{
-		if (m_stat.m_minValue > value)
+		if (m_stat.minValue > value)
 		{
-			m_stat.m_minValue = value;
+			m_stat.minValue = value;
 		}
-		if (m_stat.m_maxValue < value)
+		if (m_stat.maxValue < value)
 		{
-			m_stat.m_maxValue = value;
+			m_stat.maxValue = value;
 		}
-		m_stat.m_accValue += value;
-		++m_stat.m_countAcc;		
+		m_stat.accValue += value;
+		++m_stat.countAcc;		
 	}
 
 	SStatInfo const& GetStatInfo() const
@@ -65,9 +65,9 @@ class CStatsDisplay : public IObserver<SWeatherInfo>
 private:
 	static void DisplayStatInfo(SStatInfo const& info, std::string const& infoName)
 	{
-		std::cout << "Max " << infoName.c_str() << " " << info.m_maxValue << std::endl;
-		std::cout << "Min " << infoName.c_str() << " " << info.m_minValue << std::endl;
-		std::cout << "Average " << infoName.c_str() << " " << (info.m_accValue / info.m_countAcc) << std::endl;
+		std::cout << "Max " << infoName.c_str() << " " << info.maxValue << std::endl;
+		std::cout << "Min " << infoName.c_str() << " " << info.minValue << std::endl;
+		std::cout << "Average " << infoName.c_str() << " " << (info.accValue / info.countAcc) << std::endl;
 		std::cout << "----------------" << std::endl;
 	}
 
