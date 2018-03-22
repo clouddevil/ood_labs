@@ -15,14 +15,14 @@ public:
 	virtual ~IObserver() = default;
 };
 
-template <typename T>
+template <typename T, typename EventID>
 class IObservable
 {
 public:
 	virtual ~IObservable() = default;
-	virtual void RegisterObserver(IObserver<T> & observer, int eventId, int priority) = 0;
-	virtual void NotifyObservers(int eventId) = 0;
-	virtual void RemoveObserver(IObserver<T> & observer, int eventId) = 0;
+	virtual void RegisterObserver(IObserver<T> & observer, EventID eventId, int priority) = 0;
+	virtual void NotifyObservers(EventID eventId) = 0;
+	virtual void RemoveObserver(IObserver<T> & observer, EventID eventId) = 0;
 };
 
 
@@ -54,7 +54,7 @@ bool operator<(ObserverWrapper<T> const& a, ObserverWrapper<T> const& b)
 
 
 template <class T>
-class CObservable : public IObservable<T>
+class CObservable : public IObservable<T, int>
 {
 public:
 	using ObserverType = IObserver<T>;

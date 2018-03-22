@@ -65,7 +65,7 @@ public:
 
 	void RegisterObserver(ObserverType & observer, int priority = 0) override
 	{		
-		RegisterObserver(observer);
+		RemoveObserver(observer);
 		m_observers.emplace(&observer, priority);
 	}
 
