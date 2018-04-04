@@ -108,63 +108,188 @@ auto operator << (Component && component, const Decorator & decorate)
 	return decorate(forward<Component>(component));
 }
 
-void DialogWithUser()
+int BeverageChoice()
 {
-	cout << "Type 1 for coffee or 2 for tea\n";
-	int beverageChoice;
+	cout << "1 - Coffee; 2 - Tea; 3 - Milkshake;" << endl;
+
+	int beverageChoice = 0;
+	cin >> beverageChoice;
+	return beverageChoice;
+}
+
+int CondimentChoice()
+{
+	cout << "1 - No Condiment; 2 - Lemon; 3 - Cinnamon; 4 - Chocolate; 5 - Liquor; 6 - Cream;" << endl;
+
+	int condimentChoice;
+	cin >> condimentChoice;	
+	return condimentChoice;
+}
+
+int CondimentQuantity(std::string condimentName, int maxQuantity)
+{
+	cout << condimentName << " Quantity (max: " << maxQuantity << ")" << endl;
+
+	int condimentQuantity = 0;
+	cin >> condimentQuantity;
+	return clamp(condimentQuantity, 0, maxQuantity);
+}
+
+auto CondimentLiquorType()
+{
+	cout << "1 - Сhocolate; 5 - Nuts;" << endl;
+
+	int liquorType = 0;
+	cin >> liquorType;
+	return (liquorType == 1) ? LiquorType::Chocolate : LiquorType::Nuts;
+}
+
+IBeveragePtr MakeCoffee()
+{
+	cout << "1 - Capuccino; 2 - Latte;" << endl;
+	
+	int beverageChoice = 0;
 	cin >> beverageChoice;
 
-	unique_ptr<IBeverage> beverage;
+	cout << "1 - Standard; 2 - Double;" << endl;
+
+	int beverageQuantity = 0;
+	cin >> beverageQuantity;
 
 	if (beverageChoice == 1)
 	{
-		beverage = make_unique<CCoffee>();
+		return std::make_unique<CCapuccino>(beverageQuantity);
 	}
-	else if (beverageChoice == 2)
+	else  if (beverageChoice == 2)
 	{
-		beverage = make_unique<CTea>();
+		return std::make_unique<CLatte>(beverageQuantity);
 	}
-	else
+	return nullptr;
+}
+
+IBeveragePtr MakeTea()
+{
+	std::string tea[] = {"Black", "Green", "White", "Herbal"};
+
+	unsigned index = 1;
+	for (auto&& t : tea)
 	{
-		return;
+		cout << index++ << " - " << t  << "; ";		
+	}
+	cout << endl;
+		
+	cin >> index;
+
+	if ((index > 0) && (index <= std::size(tea)))
+	{
+		auto teaType = tea[index - 1];
+		return std::make_unique<CTea>(teaType);
+	}
+	return nullptr;
+}
+
+IBeveragePtr MakeMilkshake()
+{
+	cout << "1 - Small; 2 - Middle; 3 - Large;" << endl;
+	int shakeSize = 0;
+	cin >> shakeSize;
+	if ((0 < shakeSize) && (shakeSize <= 3))
+	{
+		return std::make_unique<CMilkshake>(shakeSize);
+	}
+	return nullptr;	
+}
+
+IBeveragePtr MakeBeverage(int choice)
+{
+	switch (choice)
+	{
+	case 1:
+		return MakeCoffee();
+	case 2:
+		return MakeTea();
+	case 3:
+		return MakeMilkshake();
+	default:
+		return nullptr;
+	}
+}
+
+
+bool DialogWithUser()
+{
+	const int choice = BeverageChoice();
+	if (choice == 0)
+	{
+		return false;
 	}
 
-	int condimentChoice;
-	for (;;)
+	auto beverage = MakeBeverage(choice);
+	if (!beverage)
 	{
-		cout << "1 - Lemon, 2 - Cinnamon, 0 - Checkout" << endl;
-		cin >> condimentChoice;
+		return true;
+	}	
 
-		if (condimentChoice == 1)
+	do
+	{
+		const int condimentChoice = CondimentChoice();
+		if (condimentChoice == 0)
 		{
-			//beverage = make_unique<CLemon>(move(beverage));
-			beverage = move(beverage) << MakeCondiment<CLemon>(2);
+			return true;
 		}
-		else if (condimentChoice == 2)
-		{
-			//beverage = make_unique<CCinnamon>(move(beverage));
-			beverage = move(beverage) << MakeCondiment<CCinnamon>();
-		}
-		else if (condimentChoice == 0)
+		else if (condimentChoice == 1)
 		{
 			break;
 		}
-		else
+		else if (condimentChoice == 2)
 		{
-			return;
+			const int condimentQuantity = CondimentQuantity("Lemon", 2);
+			if (condimentQuantity > 0)
+			{
+				beverage = move(beverage) << MakeCondiment<CLemon>(condimentQuantity);
+			}			
 		}
-	}
+		else if (condimentChoice == 3)
+		{
+			beverage = move(beverage) << MakeCondiment<CCinnamon>();
+		}
+		else if (condimentChoice == 4)
+		{
+			const int condimentQuantity = CondimentQuantity("Chocolate", 5);
+			if (condimentQuantity > 0)
+			{
+				beverage = move(beverage) << MakeCondiment<CChocolate>(condimentQuantity);
+			}
+		}
+		else if (condimentChoice == 5)
+		{
+			auto liquorType = CondimentLiquorType();
+			beverage = move(beverage) << MakeCondiment<CLiquor>(liquorType);
+		}
+		else if (condimentChoice == 6)
+		{
+			beverage = move(beverage) << MakeCondiment<CCream>();
+		}
 
+	} while (true);
 
-
+	cout << "*************************************************************" << endl;
 	cout << beverage->GetDescription() << ", cost: " << beverage->GetCost() << endl;
+	cout << "*************************************************************" << endl;
+
+	return true;
 }
 
 
 int main()
 {
-	DialogWithUser();
-	cout << endl;
+	while (DialogWithUser())
+	{
+		// ok
+		cout << endl;
+	}
+
+#if 0
 	{
 		// Наливаем чашечку латте
 		auto latte = make_unique<CLatte>();
@@ -252,4 +377,6 @@ int main()
 		// Выписываем счет покупателю
 		cout << beverage->GetDescription() << " costs " << beverage->GetCost() << endl;
 	}
+#endif
+
 }

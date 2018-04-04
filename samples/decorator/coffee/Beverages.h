@@ -6,15 +6,33 @@
 class CBeverage : public IBeverage
 {
 public:
-	CBeverage(const std::string & description)
-		:m_description(description)
+	CBeverage(const std::string & description, double cost = 0.0f)
+		:m_description(description)		
+		,m_cost(cost)
 	{}
+
+	double GetCost() const override
+	{
+		return m_cost;
+	}
 
 	std::string GetDescription()const override final
 	{
-		return m_description;
+		return m_description + " x" + std::to_string(m_quantity);
 	}
+
+	void InitCostForQuantity(unsigned beverageQantity, std::vector<double> costs)
+	{
+		auto maxQuantity = static_cast<unsigned>(std::size(costs));
+		auto quantity = clamp(beverageQantity, 1u, maxQuantity);
+
+		m_quantity = quantity;
+		m_cost = costs[quantity - 1];
+	}
+
 private:
+	double m_cost = 0.0;
+	unsigned m_quantity = 1;
 	std::string m_description;
 };
 
@@ -25,24 +43,17 @@ public:
 	CCoffee(const std::string& description = "Coffee")
 		:CBeverage(description) 
 	{}
-
-	double GetCost() const override 
-	{
-		return 60; 
-	}
+	
 };
 
 // Капуччино
 class CCapuccino : public CCoffee
 {
 public:
-	CCapuccino() 
+	CCapuccino(unsigned quantity)
 		:CCoffee("Capuccino") 
-	{}
-
-	double GetCost() const override 
 	{
-		return 80; 
+		InitCostForQuantity(quantity, { 80.0, 120.0});
 	}
 };
 
@@ -50,40 +61,29 @@ public:
 class CLatte : public CCoffee
 {
 public:
-	CLatte() 
+	CLatte(unsigned quantity)
 		:CCoffee("Latte") 
-	{}
-
-	double GetCost() const override 
 	{
-		return 90; 
-	}
+		InitCostForQuantity(quantity, { 90.0, 130.0 });
+	}	
 };
 
 // Чай
 class CTea : public CBeverage
 {
 public:
-	CTea() 
-		:CBeverage("Tea") 
-	{}
-
-	double GetCost() const override 
-	{
-		return 30; 
-	}
+	CTea(const std::string& kindOfTea)
+		:CBeverage(kindOfTea + " Tea", 30)
+	{}	
 };
 
 // Молочный коктейль
 class CMilkshake : public CBeverage
 {
 public:
-	CMilkshake() 
-		:CBeverage("Milkshake") 
-	{}
-
-	double GetCost() const override 
-	{ 
-		return 80; 
+	CMilkshake(unsigned shakeQuantity)
+		:CBeverage("Milkshake")
+	{
+		InitCostForQuantity(shakeQuantity, { 50.0, 60.0, 80.0 });
 	}
 };
