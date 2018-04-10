@@ -5,7 +5,9 @@ class MemoryOutputStream
 	: public IOutputDataStream
 {
 public:
-	MemoryOutputStream();
-	~MemoryOutputStream();
+	MemoryOutputStream();	
+
+	void WriteByte(uint8_t data) override;
+	void WriteBlock(const void * srcData, std::streamsize size) override;
 };
 

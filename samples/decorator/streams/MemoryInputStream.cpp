@@ -2,27 +2,24 @@
 #include "MemoryInputStream.h"
 
 
-
-MemoryInputStream::MemoryInputStream()
+MemoryInputStream::MemoryInputStream(std::string const& data)
+	: m_stream(data)
 {
-}
-
-MemoryInputStream::~MemoryInputStream()
-{
+	m_stream.exceptions(std::ios::failbit | std::ios::badbit);
 }
 
 bool MemoryInputStream::IsEOF() const
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	return m_stream.eof();
 }
 
 uint8_t MemoryInputStream::ReadByte()
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	return m_stream.get();
 }
 
-std::streamsize MemoryInputStream::ReadBlock(void * dstBuffer, std::streamsize size)
+std::streamsize MemoryInputStream::ReadBlock(void* dstBuffer, std::streamsize size)
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	return m_stream.readsome(reinterpret_cast<char*>(dstBuffer), size);
 }
 

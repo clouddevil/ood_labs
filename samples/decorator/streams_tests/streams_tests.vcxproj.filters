@@ -32,7 +32,7 @@
     <ClCompile Include="streams_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StreamTests.cpp">
+    <ClCompile Include="FileInputStreamTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
