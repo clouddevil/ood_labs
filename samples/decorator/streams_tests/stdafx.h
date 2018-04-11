@@ -9,9 +9,12 @@
 
 #include <stdio.h>
 #include <tchar.h>
-#include <algorithm>
-#include <functional>
-
+#include <iostream>
+#include <string>
+#include <cstdint>
+#include <fstream>
+#include <vector>
+#include <sstream>
 
 #define BOOST_TEST_MODULE StreamsTests
 
@@ -24,3 +27,6 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <math.h>
+
+#include <boost\core\noncopyable.hpp>
+#include <boost\filesystem\convenience.hpp>

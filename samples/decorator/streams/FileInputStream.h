@@ -16,3 +16,4 @@ private:
 	std::ifstream m_stream;
 };
 
+	

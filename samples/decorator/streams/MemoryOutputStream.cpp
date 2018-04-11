@@ -1,16 +1,18 @@
 #include "stdafx.h"
 #include "MemoryOutputStream.h"
 
-MemoryOutputStream::MemoryOutputStream()
-{
-}
 
 void MemoryOutputStream::WriteByte(uint8_t data)
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	m_stream.put(data);
 }
 
 void MemoryOutputStream::WriteBlock(const void * srcData, std::streamsize size)
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	m_stream.write(reinterpret_cast<const char*>(srcData), size);
+}
+
+std::string MemoryOutputStream::GetStr() const
+{
+	return m_stream.str();
 }

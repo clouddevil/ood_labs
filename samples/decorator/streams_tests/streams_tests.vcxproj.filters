@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Streams">
+      <UniqueIdentifier>{7cbb7607-d976-4fee-b9d4-59f527db5b52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -24,15 +27,51 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\streams\FileInputStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\streams\FileOutputStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\streams\IInputDataStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\streams\IOutputDataStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\streams\MemoryInputStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\streams\MemoryOutputStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamTestFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TempFileName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="streams_tests.cpp">
+    <ClCompile Include="..\streams\FileInputStream.cpp">
+      <Filter>Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\streams\FileOutputStream.cpp">
+      <Filter>Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\streams\MemoryInputStream.cpp">
+      <Filter>Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\streams\MemoryOutputStream.cpp">
+      <Filter>Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="InputStreamTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileInputStreamTests.cpp">
+    <ClCompile Include="OutputStreamTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

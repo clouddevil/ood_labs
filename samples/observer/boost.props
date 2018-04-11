@@ -4,7 +4,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <IncludePath>C:\sdk\sdk2012\boost_1_61_0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\sdk\sdk2012\boost_1_61_0\lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\sdk\sdk2012\boost_1_61_0\lib\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup />
   <ItemGroup />

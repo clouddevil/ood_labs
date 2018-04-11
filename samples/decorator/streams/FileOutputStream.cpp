@@ -1,17 +1,19 @@
 #include "stdafx.h"
 #include "FileOutputStream.h"
 
-FileOutputStream::FileOutputStream()
+FileOutputStream::FileOutputStream(std::string const& filename)
+	: m_stream(filename, std::ios_base::binary)
 {
+	m_stream.exceptions(std::ios::failbit | std::ios::badbit);
 }
 
 void FileOutputStream::WriteByte(uint8_t data)
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	m_stream.put(data);
 }
 
 void FileOutputStream::WriteBlock(const void * srcData, std::streamsize size)
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	m_stream.write(reinterpret_cast<const char*>(srcData), size);
 }
 

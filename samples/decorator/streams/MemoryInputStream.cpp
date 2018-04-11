@@ -6,6 +6,7 @@ MemoryInputStream::MemoryInputStream(std::string const& data)
 	: m_stream(data)
 {
 	m_stream.exceptions(std::ios::failbit | std::ios::badbit);
+	m_stream.peek();
 }
 
 bool MemoryInputStream::IsEOF() const
@@ -20,6 +21,8 @@ uint8_t MemoryInputStream::ReadByte()
 
 std::streamsize MemoryInputStream::ReadBlock(void* dstBuffer, std::streamsize size)
 {
-	return m_stream.readsome(reinterpret_cast<char*>(dstBuffer), size);
+	auto someSize = m_stream.readsome(reinterpret_cast<char*>(dstBuffer), size);
+	m_stream.peek();
+	return someSize;
 }
 
