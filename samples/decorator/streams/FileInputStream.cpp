@@ -21,6 +21,6 @@ uint8_t FileInputStream::ReadByte()
 std::streamsize FileInputStream::ReadBlock(void * dstBuffer, std::streamsize size)
 {
 	 auto streamsize = m_stream.readsome(reinterpret_cast<char*>(dstBuffer), size);
-	 m_stream.peek(); // invalidate eof
+	 m_stream.peek();
 	 return streamsize;
 }

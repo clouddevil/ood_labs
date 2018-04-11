@@ -19,3 +19,6 @@ public:
 
 	virtual ~IInputDataStream() = default;
 };
+
+
+using IInputDataStreamUniquePtr = std::unique_ptr<IInputDataStream>;

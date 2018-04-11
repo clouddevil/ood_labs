@@ -15,6 +15,9 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <numeric>
+#include <algorithm>
+#include <random>
 
 #define BOOST_TEST_MODULE StreamsTests
 

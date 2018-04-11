@@ -51,6 +51,12 @@
     <ClInclude Include="TempFileName.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\streams\TransformedInputDataStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\streams\CaesarCipherTransform.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +79,15 @@
     </ClCompile>
     <ClCompile Include="OutputStreamTests.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformedStreamTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\streams\TransformedInputDataStream.cpp">
+      <Filter>Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\streams\CaesarCipherTransform.cpp">
+      <Filter>Streams</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
