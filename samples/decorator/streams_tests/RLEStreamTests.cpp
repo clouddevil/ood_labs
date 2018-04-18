@@ -148,7 +148,7 @@ BOOST_AUTO_TEST_CASE(TestRLEComplexTest)
 	CompressDecompress("long long       sssssssttttttinnnnngg to tteeesst rle compppppressiion         ");
 	CompressDecompress("         -_-'                                                                  ");
 
-	std::string blanks(1024, ' ');
+	std::string blanks(7 * 1024 + 437, ' ');
 	CompressDecompress(blanks);
 }
 

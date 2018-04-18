@@ -15,12 +15,14 @@ bool FileInputStream::IsEOF() const
 
 uint8_t FileInputStream::ReadByte()
 {
-	return m_stream.get();
+	auto byte = m_stream.get();
+	m_stream.peek();
+	return byte;
 }
 
 std::streamsize FileInputStream::ReadBlock(void * dstBuffer, std::streamsize size)
 {
-	 auto streamsize = m_stream.readsome(reinterpret_cast<char*>(dstBuffer), size);
-	 m_stream.peek();
-	 return streamsize;
+	auto dstSize = m_stream.readsome(reinterpret_cast<char*>(dstBuffer), size);	
+	m_stream.peek();
+	return dstSize;
 }
