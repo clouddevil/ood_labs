@@ -2,13 +2,25 @@
 #include "..\streams\FileInputStream.h"
 #include "..\streams\MemoryInputStream.h"
 #include "StreamTestFunctions.h"
-#include "..\streams\TransformedInputDataStream.h"
+#include "..\streams\TransformedInputStream.h"
 #include "..\streams\CaesarCipherTransform.h"
 
 namespace
 {
 
+class StreamDataTransform
+	: public IStreamDataTransform
+{
+public:
+	uint8_t Transform(uint8_t byte) override
+	{
+		return byte;
+	}	
+};
+
+
 struct StreamFixture
+	: BaseFixture
 {
 };
 
@@ -18,10 +30,12 @@ BOOST_FIXTURE_TEST_SUITE(TransformedStreamTestSuite, StreamFixture)
 
 BOOST_AUTO_TEST_CASE(TestTransformedOutputStreams)
 {
-	auto is = std::make_unique<MemoryInputStream>("0123456789");
+	auto is = std::make_unique<MemoryInputStream>();
+	is->SetData(vec(digits));
+
 	auto ts = std::make_unique<StreamDataTransform>();
 
-	TransformedInputDataStream s(std::move(is), std::move(ts));
+	TransformedInputStream s(std::move(is), std::move(ts));
 	CheckOnDigits(s);
 }
 

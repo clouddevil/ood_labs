@@ -33,3 +33,12 @@
 
 #include <boost\core\noncopyable.hpp>
 #include <boost\filesystem\convenience.hpp>
+
+
+
+namespace std
+{
+
+std::ostream& operator<<(std::ostream& stream, std::vector<uint8_t> const& data);
+
+}

@@ -7,6 +7,7 @@ namespace
 {
 
 struct InputStreamFixture
+	: BaseFixture
 {
 };
 
@@ -34,14 +35,16 @@ BOOST_AUTO_TEST_CASE(TestOnDigitsFile)
 
 BOOST_AUTO_TEST_CASE(TestOnEmptyData)
 {
-	MemoryInputStream s("");
+	MemoryInputStream s;
+	s.SetData({});
 	CheckOnEmptyData(s);
 }
 
 BOOST_AUTO_TEST_CASE(TestOnDigitsData)
 {
-	MemoryInputStream s("0123456789");
-	CheckOnDigits(s);
+	MemoryInputStream s;
+	s.SetData(vec(digits));
+ 	CheckOnDigits(s);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

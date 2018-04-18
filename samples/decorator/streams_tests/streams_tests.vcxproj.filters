@@ -51,10 +51,10 @@
     <ClInclude Include="TempFileName.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\streams\TransformedInputDataStream.h">
+    <ClInclude Include="..\streams\CaesarCipherTransform.h">
       <Filter>Streams</Filter>
     </ClInclude>
-    <ClInclude Include="..\streams\CaesarCipherTransform.h">
+    <ClInclude Include="..\streams\TransformedInputStream.h">
       <Filter>Streams</Filter>
     </ClInclude>
   </ItemGroup>
@@ -83,10 +83,10 @@
     <ClCompile Include="TransformedStreamTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\streams\TransformedInputDataStream.cpp">
+    <ClCompile Include="..\streams\CaesarCipherTransform.cpp">
       <Filter>Streams</Filter>
     </ClCompile>
-    <ClCompile Include="..\streams\CaesarCipherTransform.cpp">
+    <ClCompile Include="..\streams\TransformedInputStream.cpp">
       <Filter>Streams</Filter>
     </ClCompile>
   </ItemGroup>

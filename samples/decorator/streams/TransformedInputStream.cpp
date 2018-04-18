@@ -1,24 +1,24 @@
 #include "stdafx.h"
-#include "TransformedInputDataStream.h"
+#include "TransformedInputStream.h"
 
 
-TransformedInputDataStream::TransformedInputDataStream(IInputDataStreamUniquePtr&& stream, StreamDataTransformPtr&& transform)
+TransformedInputStream::TransformedInputStream(IInputDataStreamUniquePtr&& stream, IStreamDataTransformPtr&& transform)
 	: m_stream(std::move(stream))
 	, m_transform(std::move(transform))
-{	
+{
 }
 
-bool TransformedInputDataStream::IsEOF() const
+bool TransformedInputStream::IsEOF() const
 {
 	return m_stream->IsEOF();
 }
 
-uint8_t TransformedInputDataStream::ReadByte()
+uint8_t TransformedInputStream::ReadByte()
 {
 	return m_transform->Transform(m_stream->ReadByte());
 }
 
-std::streamsize TransformedInputDataStream::ReadBlock(void * dstBuffer, std::streamsize size)
+std::streamsize TransformedInputStream::ReadBlock(void * dstBuffer, std::streamsize size)
 {
 	auto bytesRead = m_stream->ReadBlock(dstBuffer, size);
 	uint8_t* buffer = reinterpret_cast<uint8_t*>(dstBuffer);

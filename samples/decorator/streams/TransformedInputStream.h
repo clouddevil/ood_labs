@@ -1,13 +1,13 @@
 #pragma once
 #include "IInputDataStream.h"
-#include "StreamDataTransform.h"
+#include "IStreamDataTransform.h"
 
 
-class TransformedInputDataStream
+class TransformedInputStream
 	: public IInputDataStream
 {
 public:
-	TransformedInputDataStream(IInputDataStreamUniquePtr&& stream, StreamDataTransformPtr&& transform);
+	TransformedInputStream(IInputDataStreamUniquePtr&& stream, IStreamDataTransformPtr&& transform);
 
 	bool IsEOF() const override;
 	uint8_t ReadByte() override;
@@ -15,6 +15,6 @@ public:
 
 private:
 	IInputDataStreamUniquePtr m_stream;
-	StreamDataTransformPtr m_transform;
+	IStreamDataTransformPtr m_transform;
 };
 

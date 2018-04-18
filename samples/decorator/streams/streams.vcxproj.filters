@@ -33,10 +33,19 @@
     <ClCompile Include="MemoryOutputStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TransformedInputDataStream.cpp">
+    <ClCompile Include="CaesarCipherTransform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CaesarCipherTransform.cpp">
+    <ClCompile Include="TransformedOutputStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformedInputStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RLEInputStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RLEOutputStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,13 +71,22 @@
     <ClInclude Include="MemoryOutputStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TransformedInputDataStream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StreamDataTransform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CaesarCipherTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IStreamDataTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformedOutputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformedInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RLEInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RLEOutputStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -9,7 +9,9 @@ namespace
 {
 
 struct OutputStreamFixture
+	: BaseFixture
 {	
+	
 };
 
 
@@ -49,15 +51,15 @@ BOOST_AUTO_TEST_CASE(TestOnDigits)
 BOOST_AUTO_TEST_CASE(TestMemoryOutputStream)
 {
 	MemoryOutputStream s;
-	BOOST_CHECK_EQUAL(s.GetStr(), "");
+	BOOST_CHECK(s.GetData().empty());
 
-	BOOST_CHECK_NO_THROW(s.WriteByte('7'));
-	BOOST_CHECK_EQUAL(s.GetStr(), "7");
+	BOOST_CHECK_NO_THROW(s.WriteByte(7));
+	BOOST_CHECK_EQUAL(s.GetData(), vec({7}));
 	
-	std::vector<uint8_t> block{ '4', '2', '1', '7'};
+	vec block{ 4, 2, 1, 7};
 	BOOST_CHECK_NO_THROW(s.WriteBlock(block.data(), block.size()));
 
-	BOOST_CHECK_EQUAL(s.GetStr(), "74217");
+	BOOST_CHECK_EQUAL(s.GetData(), vec({7, 4, 2, 1, 7}));
 }
 
 

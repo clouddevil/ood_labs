@@ -4,6 +4,12 @@
 namespace
 {
 
+struct BaseFixture
+{
+	using vec = std::vector<uint8_t>;
+	vec digits{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+};
+
 
 void CheckOnEmptyData(IInputDataStream& s)
 {

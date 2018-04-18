@@ -147,7 +147,9 @@
     <ClCompile Include="CaesarCipherTransform.cpp" />
     <ClCompile Include="FileInputStream.cpp" />
     <ClCompile Include="FileOutputStream.cpp" />
-    <ClCompile Include="TransformedInputDataStream.cpp" />
+    <ClCompile Include="RLEInputStream.cpp" />
+    <ClCompile Include="RLEOutputStream.cpp" />
+    <ClCompile Include="TransformedInputStream.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MemoryInputStream.cpp" />
     <ClCompile Include="MemoryOutputStream.cpp" />
@@ -157,18 +159,22 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TransformedOutputStream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CaesarCipherTransform.h" />
     <ClInclude Include="FileInputStream.h" />
     <ClInclude Include="FileOutputStream.h" />
     <ClInclude Include="IInputDataStream.h" />
-    <ClInclude Include="TransformedInputDataStream.h" />
+    <ClInclude Include="RLEInputStream.h" />
+    <ClInclude Include="RLEOutputStream.h" />
+    <ClInclude Include="TransformedInputStream.h" />
     <ClInclude Include="IOutputDataStream.h" />
-    <ClInclude Include="StreamDataTransform.h" />
+    <ClInclude Include="IStreamDataTransform.h" />
     <ClInclude Include="MemoryInputStream.h" />
     <ClInclude Include="MemoryOutputStream.h" />
     <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="TransformedOutputStream.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,15 +1,32 @@
 ﻿#include "stdafx.h"
-
-#include "MemoryInputStream.h"
 #include "FileInputStream.h"
-using namespace std;
+#include "FileOutputStream.h"
 
-int main()
+int main(int argc, char* argv[])
 {
-	
-	//MemoryInputStream memStream;
-	//FileInputStream fStream;
-	
+	try
+	{
+		if (argc < 3)
+		{
+			throw std::runtime_error("invalid arguments count");
+		}
+
+		auto argIndex = argc - 1;
+		const auto outputFileName = argv[argIndex--];
+		const auto inputFileName = argv[argIndex--];
+
+		auto inputStream = std::make_unique<FileInputStream>(inputFileName);
+		auto outputStream = std::make_unique<FileOutputStream>(outputFileName);
+
+		while (argIndex > 0)
+		{
+
+		}
+	}
+	catch (std::exception const& e)
+	{
+		std::cout << e.what();
+	}
 
 	return 0;
 }

@@ -3,11 +3,11 @@
 
 
 
-CaesarCipherTransform::CaesarCipherTransform(bool decrypt)
+CaesarCipherTransform::CaesarCipherTransform(bool decrypt, unsigned int key)
 	: m_table(256)
 	, m_decrypt(decrypt)
 {
-	GenerateTable(42);
+	GenerateTable(key);
 }
 
 uint8_t CaesarCipherTransform::Transform(uint8_t byte)

@@ -1,11 +1,11 @@
 #pragma once
-#include "StreamDataTransform.h"
+#include "IStreamDataTransform.h"
 
 class CaesarCipherTransform
-	: public StreamDataTransform
+	: public IStreamDataTransform
 {
 public:
-	CaesarCipherTransform(bool decrypt);
+	CaesarCipherTransform(bool decrypt, unsigned int key = 42);
 
 	uint8_t Transform(uint8_t byte) override;
 
