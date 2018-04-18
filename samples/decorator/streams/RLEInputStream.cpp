@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "RLEInputStream.h"
 
-RLEInputStream::RLEInputStream(IInputDataStreamUniquePtr&& stream)
-	: m_stream(std::move(stream))
+RLEInputStream::RLEInputStream(IInputDataStreamPtr const& stream)
+	: m_stream(stream)
 {
 	if (!m_stream)
 	{
@@ -33,9 +33,7 @@ void RLEInputStream::TryDecompress(std::streamsize size)
 	{
 		const auto byte = m_stream->ReadByte();
 		const auto byteCount = m_stream->ReadByte();
-
-		std::vector<uint8_t> data(byteCount, byte);
-		m_buffer.Append(data);
+		m_buffer.Append(std::vector<uint8_t>(byteCount, byte));
 	}
 	m_buffer.FitToSize();
 }

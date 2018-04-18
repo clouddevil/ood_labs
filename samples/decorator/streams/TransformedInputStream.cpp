@@ -2,9 +2,9 @@
 #include "TransformedInputStream.h"
 
 
-TransformedInputStream::TransformedInputStream(IInputDataStreamUniquePtr&& stream, IStreamDataTransformPtr&& transform)
-	: m_stream(std::move(stream))
-	, m_transform(std::move(transform))
+TransformedInputStream::TransformedInputStream(IInputDataStreamPtr const& stream, IStreamDataTransformPtr const& transform)
+	: m_stream(stream)
+	, m_transform(transform)
 {
 }
 

@@ -9,7 +9,7 @@ public:
 	void WriteBlock(const void * srcData, std::streamsize size) override;
 
 	void FitToSize(uint32_t size);
-	std::vector<uint8_t> const& GetData() const;
+	std::vector<uint8_t> const& GetData() const;	
 
 private:
 	std::vector<uint8_t> m_buffer;

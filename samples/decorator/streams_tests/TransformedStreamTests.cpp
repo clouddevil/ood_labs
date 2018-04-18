@@ -30,19 +30,19 @@ BOOST_FIXTURE_TEST_SUITE(TransformedStreamTestSuite, StreamFixture)
 
 BOOST_AUTO_TEST_CASE(TestTransformedOutputStreams)
 {
-	auto is = std::make_unique<MemoryInputStream>();
+	auto is = std::make_shared<MemoryInputStream>();
 	is->SetData(vec(digits));
 
-	auto ts = std::make_unique<StreamDataTransform>();
+	auto ts = std::make_shared<StreamDataTransform>();
 
-	TransformedInputStream s(std::move(is), std::move(ts));
+	TransformedInputStream s(is, ts);
 	CheckOnDigits(s);
 }
 
 BOOST_AUTO_TEST_CASE(TestTransformedCeasarInputStreams)
 {	
-	auto ts1 = std::make_unique<CaesarCipherTransform>(true);
-	auto ts2 = std::make_unique<CaesarCipherTransform>(false);
+	auto ts1 = std::make_shared<CaesarCipherTransform>(true);
+	auto ts2 = std::make_shared<CaesarCipherTransform>(false);
 
 	std::vector<uint8_t> values = { '0', 4, 255, 36 };
 	for (auto& v : values)

@@ -21,4 +21,4 @@ public:
 };
 
 
-using IInputDataStreamUniquePtr = std::unique_ptr<IInputDataStream>;
+using IInputDataStreamPtr = std::shared_ptr<IInputDataStream>;

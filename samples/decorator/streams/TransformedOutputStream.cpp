@@ -2,9 +2,9 @@
 #include "TransformedOutputStream.h"
 
 
-TransformedOutputStream::TransformedOutputStream(IOutputDataStreamUniquePtr&& stream, IStreamDataTransformPtr&& transform)
-	: m_stream(std::move(stream))
-	, m_transform(std::move(transform))
+TransformedOutputStream::TransformedOutputStream(IOutputDataStreamPtr const& stream, IStreamDataTransformPtr const& transform)
+	: m_stream(stream)
+	, m_transform(transform)
 {
 }
 

@@ -28,15 +28,24 @@ struct RlePairArray
 
 }
 
-
-RLEOutputStream::RLEOutputStream(std::string const& filename)
-	: m_file(filename)
+RLEOutputStream::RLEOutputStream(IOutputDataStreamPtr const& stream)
+	: m_stream(stream)
 {
+	if (!m_stream)
+	{
+		throw std::runtime_error("");
+	}
 }
 
 RLEOutputStream::~RLEOutputStream()
 {
-	TryCompress(true);
+	try
+	{
+		TryCompress(true);
+	}
+	catch (...)
+	{
+	}	
 }
 
 void RLEOutputStream::WriteByte(uint8_t data)
@@ -53,10 +62,8 @@ void RLEOutputStream::WriteBlock(const void * srcData, std::streamsize size)
 
 void RLEOutputStream::TryCompress(bool closeStream)
 {
-	auto data = m_buffer.GetData();
-	
 	RlePairArray rle;
-	for (auto byte : data)
+	for (auto byte : m_buffer.GetData())
 	{
 		rle.AddByte(byte);
 	}
@@ -73,9 +80,14 @@ void RLEOutputStream::TryCompress(bool closeStream)
 		rle.pairs.pop_back();
 	}
 
+	MemoryOutputStream memory;
 	for (auto& p : rle.pairs)
 	{
-		m_file.WriteByte(p.ch);
-		m_file.WriteByte(p.size);
+		memory.WriteByte(p.ch);
+		memory.WriteByte(p.size);
 	}
+
+	auto const& block = memory.GetData();
+	m_stream->WriteBlock(block.data(), block.size());
 }
+

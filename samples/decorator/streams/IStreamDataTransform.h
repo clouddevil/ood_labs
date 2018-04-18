@@ -10,4 +10,4 @@ public:
 };
 
 
-using IStreamDataTransformPtr = std::unique_ptr<IStreamDataTransform>;
+using IStreamDataTransformPtr = std::shared_ptr<IStreamDataTransform>;

@@ -60,6 +60,8 @@ BOOST_AUTO_TEST_CASE(TestMemoryOutputStream)
 	BOOST_CHECK_NO_THROW(s.WriteBlock(block.data(), block.size()));
 
 	BOOST_CHECK_EQUAL(s.GetData(), vec({7, 4, 2, 1, 7}));
+
+	BOOST_CHECK_NO_THROW(s.WriteBlock(nullptr, 0));
 }
 
 

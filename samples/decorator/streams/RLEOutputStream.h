@@ -1,13 +1,12 @@
 #pragma once
 #include "IOutputDataStream.h"
-#include "FileOutputStream.h"
 #include "MemoryOutputStream.h"
 
 class RLEOutputStream
 	: public IOutputDataStream
 {
 public:
-	RLEOutputStream(std::string const& filename);
+	RLEOutputStream(IOutputDataStreamPtr const& stream);
 	~RLEOutputStream();
 
 	void WriteByte(uint8_t data) override;
@@ -17,7 +16,7 @@ private:
 	void TryCompress(bool closeStream);	
 
 private:
-	FileOutputStream m_file;
-	MemoryOutputStream m_buffer;	
+	MemoryOutputStream m_buffer;
+	IOutputDataStreamPtr m_stream;
 };
 

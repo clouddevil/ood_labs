@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "..\streams\RLEInputStream.h"
 #include "StreamTestFunctions.h"
+#include "..\streams\RLEOutputStream.h"
 
 namespace
 {
@@ -16,13 +17,25 @@ struct RLEStreamFixture
 		7, 1
 		};
 
-	IInputDataStreamUniquePtr Construct()
-	{
-		auto buffer = std::make_unique<MemoryInputStream>();
-		BOOST_CHECK_NO_THROW(buffer->SetData(vec(data)));
+	IInputDataStreamPtr inStream = ConstructDataInput();
+	IOutputDataStreamPtr outStream = std::make_unique<MemoryOutputStream>();
 
-		return std::make_unique<RLEInputStream>(std::move(buffer));
+	IInputDataStreamPtr ConstructDataInput()
+	{
+		auto ins = std::make_shared<MemoryInputStream>();
+		BOOST_CHECK_NO_THROW(ins->SetData(vec(data)));
+		return ins;
 	}
+
+	IInputDataStreamPtr ConstructRLEInput()
+	{
+		return std::make_shared<RLEInputStream>(inStream);
+	}
+
+	IOutputDataStreamPtr ConstructRLEOutput()
+	{		
+		return std::make_shared<RLEOutputStream>(outStream);
+	}	
 };
 
 
@@ -32,7 +45,7 @@ BOOST_FIXTURE_TEST_SUITE(RLEStreamTestSuite, RLEStreamFixture)
 
 BOOST_AUTO_TEST_CASE(TestRLEInputStreamReadBlock)
 {	
-	auto s = Construct();
+	auto s = ConstructRLEInput();
 
 	vec iData(10, 42);
 	BOOST_CHECK_NO_THROW(s->ReadBlock(iData.data(), iData.size()));
@@ -42,7 +55,7 @@ BOOST_AUTO_TEST_CASE(TestRLEInputStreamReadBlock)
 
 BOOST_AUTO_TEST_CASE(TestRLEInputStreamReadByte)
 {
-	auto s = Construct();
+	auto s = ConstructRLEInput();
 
 	BOOST_CHECK_EQUAL(s->ReadByte(), 9);
 	BOOST_CHECK_EQUAL(s->ReadByte(), 4);
@@ -51,6 +64,13 @@ BOOST_AUTO_TEST_CASE(TestRLEInputStreamReadByte)
 	BOOST_CHECK_EQUAL(s->ReadByte(), 6);
 	BOOST_CHECK_EQUAL(s->ReadByte(), 0);
 	BOOST_CHECK(!s->IsEOF());	
+}
+
+BOOST_AUTO_TEST_CASE(TestRLEOutputStreamWriteByte)
+{	
+	auto s = ConstructRLEOutput();	
+
+
 }
 
 BOOST_AUTO_TEST_SUITE_END()

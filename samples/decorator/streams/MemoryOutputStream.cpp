@@ -10,11 +10,13 @@ void MemoryOutputStream::WriteByte(uint8_t data)
 
 void MemoryOutputStream::WriteBlock(const void * srcData, std::streamsize size)
 {
-	auto bufferSize = m_buffer.size();
 	auto srcDataSize = static_cast<uint32_t>(size);
-
-	m_buffer.resize(bufferSize + srcDataSize);
-	memcpy(&m_buffer[bufferSize], srcData, srcDataSize);
+	if (srcDataSize > 0)
+	{
+		auto bufferSize = m_buffer.size();
+		m_buffer.resize(bufferSize + srcDataSize);
+		memcpy(&m_buffer[bufferSize], srcData, srcDataSize);
+	}	
 }
 
 void MemoryOutputStream::FitToSize(uint32_t size)
