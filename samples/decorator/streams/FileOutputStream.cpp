@@ -14,6 +14,9 @@ void FileOutputStream::WriteByte(uint8_t data)
 
 void FileOutputStream::WriteBlock(const void * srcData, std::streamsize size)
 {
-	m_stream.write(reinterpret_cast<const char*>(srcData), size);
+	if (size > 0)
+	{
+		m_stream.write(reinterpret_cast<const char*>(srcData), size);
+	}	
 }
 

@@ -98,4 +98,47 @@ BOOST_AUTO_TEST_CASE(TestRLEOutputStreamWriteByte)
 	BOOST_CHECK_EQUAL(outData, data);
 }
 
+BOOST_AUTO_TEST_CASE(TestRLEWriteBlock)
+{
+	{
+		auto s = ConstructRLEOutput();
+		BOOST_CHECK_NO_THROW(s->WriteBlock(nullptr, 0));
+		BOOST_CHECK_NO_THROW(s->WriteBlock(vec({9, 4, 4, 4, 6, 0, 0, 7}).data(), 8));
+	}
+	auto const& outData = outStream->GetData();
+	BOOST_CHECK_EQUAL(outData, data);
+}
+
+BOOST_AUTO_TEST_CASE(TestRLEComplexTest)
+{
+	vec buffer;
+	{
+		std::string s = "long long       sssssssttttttinnnnngg to tteeesst rle compppppressiion         ";		
+		std::copy(s.begin(), s.end(), std::back_inserter(buffer));		
+	}
+
+	// compress
+	{
+		auto out = ConstructRLEOutput();
+		out->WriteBlock(buffer.data(), buffer.size());
+	}
+
+	vec result;
+
+	// decompress
+	{
+		auto inp = ConstructRLEInput();
+		inStream->SetData(vec(outStream->GetData()));
+		while (!inp->IsEOF())
+		{
+			vec tmp(7);
+			auto readSize = inp->ReadBlock(tmp.data(), tmp.size());
+			tmp.resize(static_cast<uint32_t>(readSize));
+
+			result.insert(result.end(), tmp.begin(), tmp.end());
+		}
+	}
+	BOOST_CHECK_EQUAL(buffer, result);
+}
+
 BOOST_AUTO_TEST_SUITE_END()

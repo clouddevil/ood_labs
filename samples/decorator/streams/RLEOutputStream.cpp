@@ -20,6 +20,33 @@ struct RlePairArray
 {
 	void AddByte(uint8_t byte)
 	{		
+		if (pairs.empty())
+		{
+			PutByte(byte);
+		}
+		else
+		{
+			auto last = pairs.rbegin();
+			if (last->ch == byte)
+			{
+				if (last->size >= std::numeric_limits<uint8_t>::max())
+				{
+					PutByte(byte);
+				}
+				else
+				{
+					last->size++;
+				}
+			}
+			else
+			{
+				PutByte(byte);
+			}
+		}		
+	}
+
+	void PutByte(uint8_t byte)
+	{
 		pairs.emplace_back(rle{ byte, 1 });
 	}
 
@@ -62,8 +89,14 @@ void RLEOutputStream::WriteBlock(const void * srcData, std::streamsize size)
 
 void RLEOutputStream::TryCompress(bool closeStream)
 {
+	auto const& bufferData = m_buffer.GetData();
+	if (bufferData.empty())
+	{
+		return;
+	}
+
 	RlePairArray rle;
-	for (auto byte : m_buffer.GetData())
+	for (auto byte : bufferData)
 	{
 		rle.AddByte(byte);
 	}
