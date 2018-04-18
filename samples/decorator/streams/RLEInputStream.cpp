@@ -1,14 +1,18 @@
 #include "stdafx.h"
 #include "RLEInputStream.h"
 
-RLEInputStream::RLEInputStream(std::string const& filename)
-	: m_file(filename)	
+RLEInputStream::RLEInputStream(IInputDataStreamUniquePtr&& stream)
+	: m_stream(std::move(stream))
 {
+	if (!m_stream)
+	{
+		throw std::runtime_error("");
+	}
 }
 
 bool RLEInputStream::IsEOF() const
 {	
-	return m_buffer.IsEOF() && m_file.IsEOF();
+	return m_buffer.IsEOF() && m_stream->IsEOF();
 }
 
 uint8_t RLEInputStream::ReadByte()
@@ -25,10 +29,10 @@ std::streamsize RLEInputStream::ReadBlock(void* dstBuffer, std::streamsize size)
 
 void RLEInputStream::TryDecompress(std::streamsize size)
 {
-	while (!m_file.IsEOF() && (m_buffer.GetAvailableSize() < size))
+	while (!m_stream->IsEOF() && (m_buffer.GetAvailableSize() < size))
 	{
-		const auto byte = m_file.ReadByte();
-		const auto byteCount = m_file.ReadByte();
+		const auto byte = m_stream->ReadByte();
+		const auto byteCount = m_stream->ReadByte();
 
 		std::vector<uint8_t> data(byteCount, byte);
 		m_buffer.Append(data);

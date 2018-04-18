@@ -170,6 +170,8 @@
     <ClInclude Include="..\streams\IOutputDataStream.h" />
     <ClInclude Include="..\streams\MemoryInputStream.h" />
     <ClInclude Include="..\streams\MemoryOutputStream.h" />
+    <ClInclude Include="..\streams\RLEInputStream.h" />
+    <ClInclude Include="..\streams\RLEOutputStream.h" />
     <ClInclude Include="..\streams\TransformedInputStream.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StreamTestFunctions.h" />
@@ -182,8 +184,11 @@
     <ClCompile Include="..\streams\FileOutputStream.cpp" />
     <ClCompile Include="..\streams\MemoryInputStream.cpp" />
     <ClCompile Include="..\streams\MemoryOutputStream.cpp" />
+    <ClCompile Include="..\streams\RLEInputStream.cpp" />
+    <ClCompile Include="..\streams\RLEOutputStream.cpp" />
     <ClCompile Include="..\streams\TransformedInputStream.cpp" />
     <ClCompile Include="OutputStreamTests.cpp" />
+    <ClCompile Include="RLEStreamTests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -57,6 +57,12 @@
     <ClInclude Include="..\streams\TransformedInputStream.h">
       <Filter>Streams</Filter>
     </ClInclude>
+    <ClInclude Include="..\streams\RLEInputStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
+    <ClInclude Include="..\streams\RLEOutputStream.h">
+      <Filter>Streams</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -88,6 +94,15 @@
     </ClCompile>
     <ClCompile Include="..\streams\TransformedInputStream.cpp">
       <Filter>Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\streams\RLEInputStream.cpp">
+      <Filter>Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="..\streams\RLEOutputStream.cpp">
+      <Filter>Streams</Filter>
+    </ClCompile>
+    <ClCompile Include="RLEStreamTests.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

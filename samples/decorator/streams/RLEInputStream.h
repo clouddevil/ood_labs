@@ -7,7 +7,7 @@ class RLEInputStream
 	: public IInputDataStream
 {
 public:
-	RLEInputStream(std::string const& filename);
+	RLEInputStream(IInputDataStreamUniquePtr&& stream);
 
 	bool IsEOF() const override;
 	uint8_t ReadByte() override;
@@ -16,8 +16,8 @@ public:
 private:	
 	void TryDecompress(std::streamsize size);
 
-private:
-	FileInputStream m_file;
+private:	
 	MemoryInputStream m_buffer;
+	IInputDataStreamUniquePtr m_stream;
 };
 
