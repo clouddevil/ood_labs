@@ -17,10 +17,10 @@ struct RLEStreamFixture
 		7, 1
 		};
 
-	IInputDataStreamPtr inStream = ConstructDataInput();
-	IOutputDataStreamPtr outStream = std::make_unique<MemoryOutputStream>();
+	std::shared_ptr<MemoryInputStream> inStream = ConstructDataInput();
+	std::shared_ptr<MemoryOutputStream> outStream = std::make_unique<MemoryOutputStream>();
 
-	IInputDataStreamPtr ConstructDataInput()
+	std::shared_ptr<MemoryInputStream> ConstructDataInput()
 	{
 		auto ins = std::make_shared<MemoryInputStream>();
 		BOOST_CHECK_NO_THROW(ins->SetData(vec(data)));
@@ -68,9 +68,34 @@ BOOST_AUTO_TEST_CASE(TestRLEInputStreamReadByte)
 
 BOOST_AUTO_TEST_CASE(TestRLEOutputStreamWriteByte)
 {	
-	auto s = ConstructRLEOutput();	
+	{
+		auto s = ConstructRLEOutput();
+		BOOST_CHECK_NO_THROW(s->WriteByte(9));
+		BOOST_CHECK_EQUAL(outStream->GetData(), vec({}));
 
+		BOOST_CHECK_NO_THROW(s->WriteByte(4));
+		BOOST_CHECK_EQUAL(outStream->GetData(), vec({9, 1}));
 
+		BOOST_CHECK_NO_THROW(s->WriteByte(4));
+		BOOST_CHECK_EQUAL(outStream->GetData(), vec({ 9, 1 }));
+
+		BOOST_CHECK_NO_THROW(s->WriteByte(4));
+		BOOST_CHECK_EQUAL(outStream->GetData(), vec({ 9, 1 }));
+
+		BOOST_CHECK_NO_THROW(s->WriteByte(6));
+		BOOST_CHECK_EQUAL(outStream->GetData(), vec({ 9, 1, 4, 3 }));
+
+		BOOST_CHECK_NO_THROW(s->WriteByte(0));
+		BOOST_CHECK_EQUAL(outStream->GetData(), vec({ 9, 1, 4, 3, 6, 1 }));
+
+		BOOST_CHECK_NO_THROW(s->WriteByte(0));
+		BOOST_CHECK_EQUAL(outStream->GetData(), vec({ 9, 1, 4, 3, 6, 1 }));
+
+		BOOST_CHECK_NO_THROW(s->WriteByte(7));
+		BOOST_CHECK_EQUAL(outStream->GetData(), vec({ 9, 1, 4, 3, 6, 1, 0, 2 }));
+	}
+	auto const& outData = outStream->GetData();
+	BOOST_CHECK_EQUAL(outData, data);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
