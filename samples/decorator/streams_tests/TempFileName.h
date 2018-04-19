@@ -1,5 +1,6 @@
 #pragma once
 
+#include <windows.h>
 
 class TempFilename
 	: boost::noncopyable
@@ -16,7 +17,8 @@ public:
 	}
 
 	~TempFilename()
-	{		
+	{	
+		::DeleteFileA(m_name.c_str());
 		//boost::filesystem::remove(m_name);
 	}
 
