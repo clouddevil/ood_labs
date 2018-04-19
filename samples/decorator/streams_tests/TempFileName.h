@@ -16,8 +16,8 @@ public:
 	}
 
 	~TempFilename()
-	{
-		boost::filesystem::remove(m_name);
+	{		
+		//boost::filesystem::remove(m_name);
 	}
 
 private:

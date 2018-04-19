@@ -32,8 +32,6 @@
 #include <math.h>
 
 #include <boost\core\noncopyable.hpp>
-#include <boost\filesystem\convenience.hpp>
-
 
 
 namespace std

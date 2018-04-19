@@ -21,7 +21,7 @@ void MemoryOutputStream::WriteBlock(const void * srcData, std::streamsize size)
 
 void MemoryOutputStream::FitToSize(uint32_t size)
 {
-	auto bufferSize = std::min<>(size, m_buffer.size());	
+	auto bufferSize = std::min<uint32_t>(size, static_cast<uint32_t>(m_buffer.size()));
 	std::vector<uint8_t>(m_buffer.end() - bufferSize, m_buffer.end()).swap(m_buffer);
 }
 
