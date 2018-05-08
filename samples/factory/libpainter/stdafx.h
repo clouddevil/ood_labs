@@ -9,6 +9,13 @@
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 
+#include <wtypes.h>
+#include <vector>
+#include <istream>
+#include <iosfwd>
+#include <sstream>
+#include <iterator>
+#include <memory>
 #include <string>
 
-// TODO: reference additional headers your program requires here
+#include <boost/iterator/indirect_iterator.hpp>

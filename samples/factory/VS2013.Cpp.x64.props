@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <!--debug suffix-->
+    <DebugSuffixOpt Condition="$(Configuration.StartsWith('Debug'))">d</DebugSuffixOpt>
+    <DebugSuffixOpt Condition="$(Configuration.StartsWith('Release'))" />
+    <!--platform subdir optional-->
+    <PlatformDirOpt>x64\</PlatformDirOpt>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IncludePath>$(SDK_2012)\GSL\include;$(SDK_2012)\FreeImage3170\include;$(SDK_2012)\BaseClasses\include;$(SDK_2012)\rapidxml\include;$(SDK_2012)\atlext\include;$(SDK_2012)\boost_1_61_0\include;$(SDK_2012)\cxxtest\include;$(SDK_2012)\freetype-2.6.3\include;$(SDK_2012)\json_spirit_v4.08_ispring\include;$(SDK_2012)\libpng-1.6.29\include;$(SDK_2012)\WTL91\include;$(SDK_2012)\wtlext\include;$(SDK_2012)\zlib-1.2.8\include;$(SDK_2012)\cryptopp563\include;$(SDK_2012)\loki\include;$(SDK_2012)\fd_delegate\include;$(SDK_2012)\vld\include;$(SDK_2012)\openssl-1.0.2k\include;$(SDK_2012)\curl-7.54.0\include;$(SDK_2012)\curlcpp-1.0\include;$(SDK_2012)\half\include;$(SDK_2012)\pugixml-1.6\include;$(SDK_2012)\fakeit\include;$(SDK_2012)\fakeit\config;$(SDK_2012)\sqlcipher-3.20\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SDK_2012)\boost_1_61_0\lib\nothreads\x64;$(SDK_2012)\freetype-2.6.3\lib\x64;$(SDK_2012)\cryptopp563\lib\x64;$(SDK_2012)\libpng-1.6.29\lib\x64;$(SDK_2012)\zlib-1.2.8\lib\x64;$(SDK_2012)\BaseClasses\lib\x64;$(SDK_2012)\vld\lib\Win64;$(SDK_2012)\FreeImage3170\lib\x64;$(SDK_2012)\openssl-1.0.2k\lib\x64;$(SDK_2012)\curl-7.54.0\lib\x64;$(SDK_2012)\curlcpp-1.0\lib\x64;$(SDK_2012)\pugixml-1.6\lib\x64;$(SDK_2012)\sqlcipher-3.20\lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.StartsWith('Debug'))">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(Configuration.StartsWith('Release'))">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level4</WarningLevel>
+      <MinimalRebuild>false</MinimalRebuild>
+      <OmitFramePointers>false</OmitFramePointers>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0601;_WIN32_IE=0x0800;_AFX_NOFORCE_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4091;4458;4459;4456;4457;4640;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <LargeAddressAware>true</LargeAddressAware>
+    </Link>
+    <Lib>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Lib>
+    <MASM>
+      <UseSafeExceptionHandlers>true</UseSafeExceptionHandlers>
+    </MASM>
+    <Manifest>
+      <AdditionalManifestFiles>$(SolutionDir)lib\manifest\compatibility.xml;$(SolutionDir)lib\manifest\common-controls.xml</AdditionalManifestFiles>
+    </Manifest>
+    <FxCompile>
+      <ShaderModel>4.0_level_9_3</ShaderModel>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="$(Configuration.StartsWith('Debug'))">
+    <ClCompile>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>false</OptimizeReferences>
+      <EnableCOMDATFolding>false</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="$(Configuration.StartsWith('Release'))">
+    <ClCompile>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

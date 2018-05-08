@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "PictureDraft.h"
-using namespace std;
 
 bool CPictureDraft::IsEmpty() const
 {
@@ -17,7 +16,7 @@ CPictureDraft::ConstIterator CPictureDraft::end() const
 	return m_shapes.end();
 }
 
-void CPictureDraft::AddShape(std::unique_ptr<CShape>&& shape)
+void CPictureDraft::AddShape(IShapeUniquePtr&& shape)
 {
 	m_shapes.push_back(move(shape));
 }

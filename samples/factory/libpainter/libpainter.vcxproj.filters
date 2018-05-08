@@ -16,51 +16,75 @@
     <Filter Include="Support Files">
       <UniqueIdentifier>{ba73d31c-980c-4e12-9d5c-c88efdd5c0d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shapes">
-      <UniqueIdentifier>{44d427e4-3d63-49c0-80bf-3b9ff9dfc07d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Canvas">
-      <UniqueIdentifier>{d02c0c03-4e99-4878-ad5a-49328e73c38f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Designer">
-      <UniqueIdentifier>{d591d95e-293c-4bc6-8cd5-30add364bdd4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ICanvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Designer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IShapeFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureDraft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="stdafx.h">
-      <Filter>Support Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Support Files</Filter>
     </ClInclude>
-    <ClInclude Include="Designer.h">
-      <Filter>Source Files\Designer</Filter>
+    <ClInclude Include="Point.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PictureDraft.h">
-      <Filter>Source Files\Shapes</Filter>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Source Files\Shapes</Filter>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="IShapeFactory.h">
-      <Filter>Source Files\Shapes</Filter>
+    <ClInclude Include="ShapeFactroy.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IShape.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGroup.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IPainter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IPictureDraft.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Support Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Designer.cpp">
-      <Filter>Source Files\Designer</Filter>
-    </ClCompile>
     <ClCompile Include="PictureDraft.cpp">
-      <Filter>Source Files\Shapes</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Shape.cpp">
-      <Filter>Source Files\Shapes</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Designer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeFactroy.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
