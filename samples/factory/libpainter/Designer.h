@@ -1,15 +1,14 @@
 ﻿#pragma once
 
-
-class CPictureDraft;
+class PictureDraft;
 class IShapeFactory;
 
-class CDesigner
+class Designer
 {
 public:
-	CDesigner(IShapeFactory & factory);
+	Designer(IShapeFactory & factory);
 	
-	CPictureDraft CreateDraft(std::istream & inputData);
+	PictureDraft CreateDraft(std::istream & inputData);
 private:
 	IShapeFactory & m_factory;
 };

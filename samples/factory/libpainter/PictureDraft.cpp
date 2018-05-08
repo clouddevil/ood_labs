@@ -1,27 +1,25 @@
 #include "stdafx.h"
 #include "PictureDraft.h"
 
-bool CPictureDraft::IsEmpty() const
+bool PictureDraft::IsEmpty() const
 {
 	return m_shapes.empty();
 }
 
-CPictureDraft::ConstIterator CPictureDraft::begin() const
+PictureDraft::ConstIterator PictureDraft::begin() const
 {
 	return m_shapes.begin();
 }
 
-CPictureDraft::ConstIterator CPictureDraft::end() const
+PictureDraft::ConstIterator PictureDraft::end() const
 {
 	return m_shapes.end();
 }
 
-void CPictureDraft::AddShape(IShapeUniquePtr&& shape)
+void PictureDraft::AddShape(IShapeUniquePtr&& shape)
 {
 	m_shapes.push_back(move(shape));
 }
 
-CPictureDraft::CPictureDraft()
-{
-}
+
 

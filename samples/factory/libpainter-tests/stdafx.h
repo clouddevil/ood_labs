@@ -7,10 +7,17 @@
 
 #include "targetver.h"
 
-#include <stdio.h>
-#include <tchar.h>
-
+#include <wtypes.h>
+#include <vector>
+#include <istream>
+#include <iostream>
+#include <iosfwd>
 #include <sstream>
+#include <iterator>
+#include <memory>
+#include <string>
+#include <functional>
+
 
 #define BOOST_TEST_INCLUDED
 #pragma warning (push, 3)
@@ -18,7 +25,10 @@
 #include <boost/test/unit_test.hpp>
 #pragma warning (pop)
 
+#include <boost/iterator/indirect_iterator.hpp>
 #include <boost/range/algorithm/copy.hpp>
 #include <boost/algorithm/cxx11/all_of.hpp>
 
-// TODO: reference additional headers your program requires here
+
+
+

@@ -2,40 +2,20 @@
 #include "../libpainter/Designer.h"
 #include "../libpainter/PictureDraft.h"
 #include "../libpainter/IShapeFactory.h"
+#include "Mocks.h"
+
 
 using namespace std;
 using boost::algorithm::all_of;
 using boost::copy;
 
-class CMockShape : public CShape
-{
-public:
-	CMockShape(const string& descr)
-		:descr(descr)
-	{
-	}
-	string descr;
-};
-
-struct MockShapeFactory : IShapeFactory
-{
-	vector<string> shapeDescriptions;
-	// Inherited via IShapeFactory
-	unique_ptr<CShape> CreateShape(const std::string & description) override
-	{
-		// Запротоколировали описание созданной фигуры
-		shapeDescriptions.push_back(description);
-		return make_unique<CMockShape>(description);
-	}
-};
-
 struct Designer_
 {
 	MockShapeFactory factory;
-	CDesigner designer = CDesigner(factory);
+	Designer designer = Designer(factory);
 };
 
-BOOST_FIXTURE_TEST_SUITE(Designer, Designer_)
+BOOST_FIXTURE_TEST_SUITE(DesignerTestSuite, Designer_)
 	BOOST_AUTO_TEST_SUITE(when_creating_draft)
 		BOOST_AUTO_TEST_CASE(returns_empty_draft_when_input_is_empty)
 		{
@@ -51,7 +31,7 @@ BOOST_FIXTURE_TEST_SUITE(Designer, Designer_)
 				"square", "circle", "triangle"
 			};
 			stringstream strm;
-			CPictureDraft returnedDraft;
+			PictureDraft returnedDraft;
 			when_creating_draft_with_non_empty_input_()
 			{
 				copy(expectedShapeDescriptions, ostream_iterator<string>(strm, "\n"));
@@ -67,7 +47,7 @@ BOOST_FIXTURE_TEST_SUITE(Designer, Designer_)
 			{
 				vector<string> shapeDescriptions;
 				std::transform(returnedDraft.begin(), returnedDraft.end(), back_inserter(shapeDescriptions), [](auto & shape) {
-					auto shapeAsMockShape = dynamic_cast<const CMockShape*>(&shape);
+					auto shapeAsMockShape = dynamic_cast<const MockShape*>(&shape);
 					BOOST_REQUIRE(shapeAsMockShape);
 					return shapeAsMockShape->descr;
 				});

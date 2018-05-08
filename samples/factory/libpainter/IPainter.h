@@ -1,8 +1,6 @@
 #pragma once
 
+class ICanvas;
+class IPictureDraft;
 
-class IPainter
-{
-public:
-	virtual void DrawPicture(CPictureDraft const& draft, ICanvas& canvas) = 0;
-};
+using IPainter = std::function<void(IPictureDraft const& draft, ICanvas& canvas)>;

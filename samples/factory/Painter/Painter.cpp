@@ -11,22 +11,22 @@ using namespace std;
 int main()
 {
 	ShapeFactroy shapeFactory;
-	CDesigner designer(shapeFactory);
+	Designer designer(shapeFactory);
 
 	auto draft = designer.CreateDraft(std::cin);
 
 
- 	SvgCanvas svg;
- 	svg.BeginDraw();
-	{
-		SvgSerializer serializer(svg);
+// 	SvgCanvas svg;
+// 	svg.BeginDraw();
+// 	{
+// 		SvgSerializer serializer(svg);
 
-		for (auto & shape : draft)
-		{
-			shape->Draw();
-		}
-	}
-	svg.EndDraw();
+// 		for (auto & shape : draft)
+// 		{
+// 			shape.Accept(painter);
+// 		}
+// 	}
+// 	svg.EndDraw();
 	
 	return 0;
 }

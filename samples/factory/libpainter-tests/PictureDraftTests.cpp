@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "../libpainter/PictureDraft.h"
 #include "../libpainter/Shape.h"
+#include "Mocks.h"
 
 using namespace std;
 struct Picture_draft_
 {
-	CPictureDraft draft;
+	PictureDraft draft;
 };
 
 BOOST_FIXTURE_TEST_SUITE(Picture_draft, Picture_draft_)
@@ -22,12 +23,12 @@ BOOST_FIXTURE_TEST_SUITE(Picture_draft, Picture_draft_)
 
 	struct after_adding_a_shape_ : Picture_draft_
 	{
-		unique_ptr<CShape> shape1 = make_unique<CShape>();
-		CShape & refShape1 = *shape1;
-		unique_ptr<CShape> shape2 = make_unique<CShape>();
-		CShape & refShape2 = *shape2;
-		unique_ptr<CShape> shape3 = make_unique<CShape>();
-		CShape & refShape3 = *shape3;
+		IShapeUniquePtr shape1 = make_unique<MockShape>();
+		IShape & refShape1 = *shape1;
+		IShapeUniquePtr shape2 = make_unique<MockShape>();
+		IShape& refShape2 = *shape2;
+		IShapeUniquePtr shape3 = make_unique<MockShape>();
+		IShape& refShape3 = *shape3;
 
 		after_adding_a_shape_()
 		{

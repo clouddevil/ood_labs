@@ -2,7 +2,7 @@
 #include "Shape.h"
 
 class Rectangle
-	: public CShape
+	: public Shape
 {
 public:
 	Rectangle();

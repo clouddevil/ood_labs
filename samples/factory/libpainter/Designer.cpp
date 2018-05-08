@@ -5,14 +5,14 @@
 
 using namespace std;
 
-CDesigner::CDesigner(IShapeFactory & factory)
+Designer::Designer(IShapeFactory & factory)
 	:m_factory(factory)
 {
 }
 
-CPictureDraft CDesigner::CreateDraft(std::istream & inputData)
+PictureDraft Designer::CreateDraft(std::istream & inputData)
 {
-	CPictureDraft draft;
+	PictureDraft draft;
 	string line;
 	while (getline(inputData, line))
 	{

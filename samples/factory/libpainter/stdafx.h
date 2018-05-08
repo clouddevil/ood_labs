@@ -17,5 +17,6 @@
 #include <iterator>
 #include <memory>
 #include <string>
+#include <functional>
 
 #include <boost/iterator/indirect_iterator.hpp>

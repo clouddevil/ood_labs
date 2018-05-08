@@ -1,12 +1,11 @@
 #pragma once
 #include "IPictureDraft.h"
 
-class CPictureDraft
+class PictureDraft
 	: public IPictureDraft
 {
-
 public:	
-	CPictureDraft();
+	PictureDraft() = default;
 
 	bool IsEmpty()const;
 
@@ -15,22 +14,22 @@ public:
 
 	void AddShape(IShapeUniquePtr&& shape);
 
-	CPictureDraft(CPictureDraft &&) = default;
-	CPictureDraft& operator=(CPictureDraft &&) = default;
+	PictureDraft(PictureDraft &&) = default;
+	PictureDraft& operator=(PictureDraft &&) = default;
 
-	CPictureDraft(const CPictureDraft &) = delete;
-	CPictureDraft& operator=(const CPictureDraft &) = delete;
+	PictureDraft(const PictureDraft &) = delete;
+	PictureDraft& operator=(const PictureDraft &) = delete;
 
 private:
 	ShapeStorage m_shapes;
 };
 
-inline CPictureDraft::ConstIterator begin(const CPictureDraft & draft)
+inline PictureDraft::ConstIterator begin(const PictureDraft & draft)
 {
 	return draft.begin();
 }
 
-inline CPictureDraft::ConstIterator end(const CPictureDraft & draft)
+inline PictureDraft::ConstIterator end(const PictureDraft & draft)
 {
 	return draft.end();
 }

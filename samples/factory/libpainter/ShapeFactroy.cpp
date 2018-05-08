@@ -4,7 +4,7 @@
 
 using namespace std;
 
-std::unique_ptr<CShape> ShapeFactroy::CreateShape(const std::string & description)
+IShapeUniquePtr ShapeFactroy::CreateShape(const std::string & description)
 {
 	istringstream iss(description);
 	vector<std::string> tokens{ istream_iterator<string>{iss}, istream_iterator<string>{} };
