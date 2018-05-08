@@ -13,7 +13,12 @@ int main()
 	ShapeFactroy shapeFactory;
 	Designer designer(shapeFactory);
 
-	auto draft = designer.CreateDraft(std::cin);
+	std::istringstream s(" ");
+	//std::istringstream s("rect 0 0 100 100");
+
+	auto draft = designer.CreateDraft(s);
+
+	//auto draft = designer.CreateDraft(std::cin);
 
 
 // 	SvgCanvas svg;

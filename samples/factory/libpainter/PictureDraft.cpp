@@ -18,7 +18,10 @@ PictureDraft::ConstIterator PictureDraft::end() const
 
 void PictureDraft::AddShape(IShapeUniquePtr&& shape)
 {
-	m_shapes.push_back(move(shape));
+	if (shape)
+	{
+		m_shapes.emplace_back(move(shape));
+	}
 }
 
 
