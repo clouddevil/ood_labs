@@ -33,13 +33,16 @@ int main()
 
 		auto draft = designer.CreateDraft(std::cin);
 		SvgCanvas canvas("draft.svg");
+		canvas.BeginDraw(1280, 1024);
+
 		PaintDraft(draft, canvas);
 
 #if 1
-		DrawSun(designer, canvas);
+		//DrawSun(designer, canvas);
 		//DrawCar(designer, canvas);
 #endif
 
+		canvas.EndDraw();
 	}
 	catch (std::exception const& e)
 	{

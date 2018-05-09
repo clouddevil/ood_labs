@@ -7,12 +7,15 @@ class SvgCanvas final
 public:
 	SvgCanvas(std::string const& svgFileName);
 	
-	void SetDrawingState(CanvasDrawingState const& state) override;
+	void BeginDraw(uint32_t w, uint32_t h);
+	void EndDraw();	
 
+	void SetDrawingState(CanvasDrawingState const& state) override;
 	void DrawVertices(std::vector<PointD> const& vtxs) override;
 
 private:
 	std::ofstream m_stream;
 	CanvasDrawingState m_state;	
+	std::string m_svgFileName;
 };
 
