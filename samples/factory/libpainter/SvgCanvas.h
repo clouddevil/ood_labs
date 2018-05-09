@@ -11,7 +11,10 @@ public:
 	void EndDraw();	
 
 	void SetDrawingState(CanvasDrawingState const& state) override;
-	void DrawVertices(std::vector<PointD> const& vtxs) override;
+	void DrawPolygon(std::vector<PointD> const& vtxs) override;
+
+private:
+	std::string GetStyle() const;
 
 private:
 	std::ofstream m_stream;

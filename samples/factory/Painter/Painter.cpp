@@ -10,18 +10,28 @@
 
 using namespace std;
 
-void DrawCar(Designer& designer, ICanvas& canvas)
+void DrawStr(std::string const& str, Designer& designer, ICanvas& canvas)
 {
-	std::istringstream s("rect 0 0 100 100");
+	std::istringstream s(str);
 	auto draft = designer.CreateDraft(s);
 	PaintDraft(draft, canvas);
 }
 
+void DrawCar(Designer& designer, ICanvas& canvas)
+{
+	std::ostringstream buffer;
+	buffer << "rect 30 40 100 100" << std::endl;
+	buffer << "triangle 75 75 200 100 140 140" << std::endl;
+
+	DrawStr(buffer.str(), designer, canvas);
+}
+
 void DrawSun(Designer& designer, ICanvas& canvas)
 {
-	std::istringstream s("rect 0 0 100 100");
-	auto draft = designer.CreateDraft(s);
-	PaintDraft(draft, canvas);
+	std::ostringstream buffer;
+	buffer << "rect 0 0 100 100" << std::endl;
+
+	DrawStr(buffer.str(), designer, canvas);
 }
 
 int main()
@@ -31,15 +41,17 @@ int main()
 		ShapeFactroy shapeFactory;
 		Designer designer(shapeFactory);
 
-		auto draft = designer.CreateDraft(std::cin);
 		SvgCanvas canvas("draft.svg");
 		canvas.BeginDraw(1280, 1024);
 
+#if 0
+		auto draft = designer.CreateDraft(std::cin);
 		PaintDraft(draft, canvas);
+#endif
 
 #if 1
 		//DrawSun(designer, canvas);
-		//DrawCar(designer, canvas);
+		DrawCar(designer, canvas);
 #endif
 
 		canvas.EndDraw();
