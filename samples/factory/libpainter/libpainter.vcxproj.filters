@@ -75,6 +75,9 @@
     <ClInclude Include="DraftPainter.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Group.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PictureDraft.cpp">
@@ -99,6 +102,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DraftPainter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

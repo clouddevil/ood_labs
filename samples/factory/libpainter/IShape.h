@@ -1,9 +1,10 @@
 #pragma once
 
-#include "IGroup.h"
 #include "IShapeVisitor.h"
 #include "Style.h"
 #include "CommonTypes.h"
+
+class IGroup;
 
 class IShape
 {
