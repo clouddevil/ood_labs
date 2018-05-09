@@ -12,6 +12,7 @@ public:
 
 	void SetDrawingState(CanvasDrawingState const& state) override;
 	void DrawPolygon(std::vector<PointD> const& vtxs) override;
+	void DrawEllipse(PointD const& center, PointD const& radius) override;
 
 private:
 	std::string GetStyle() const;

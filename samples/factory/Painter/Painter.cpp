@@ -22,6 +22,7 @@ void DrawCar(Designer& designer, ICanvas& canvas)
 	std::ostringstream buffer;
 	buffer << "rect 30 40 100 100" << std::endl;
 	buffer << "triangle 75 75 200 100 140 140" << std::endl;
+	buffer << "ellipse 75 75 200 100 " << std::endl;
 
 	DrawStr(buffer.str(), designer, canvas);
 }
