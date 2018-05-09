@@ -14,9 +14,12 @@
 #include <istream>
 #include <iosfwd>
 #include <sstream>
+#include <fstream> 
 #include <iterator>
 #include <memory>
 #include <string>
+#include <iostream>
 #include <functional>
 
+#include <boost/optional.hpp>
 #include <boost/iterator/indirect_iterator.hpp>

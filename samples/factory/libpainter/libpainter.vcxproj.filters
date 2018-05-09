@@ -42,12 +42,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Support Files</Filter>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShapeFactroy.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -66,6 +60,21 @@
     <ClInclude Include="Style.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Shapes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes_fwd.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SvgCanvas.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonTypes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DraftPainter.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PictureDraft.cpp">
@@ -80,13 +89,16 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShapeFactroy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IShapeVisitor.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SvgCanvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DraftPainter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

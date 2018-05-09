@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "Shape.h"
 
-
-void Shape::Accept(IShapeVisitor& )
+void Shape::Accept(IShapeVisitor& /*visitor*/) const
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
@@ -12,12 +11,12 @@ IGroup* Shape::GetGroup()
 	return nullptr;
 }
 
-Rect Shape::GetFrame()const
+RectD Shape::GetFrame()const
 {
 	return m_frame;
 }
 
-void Shape::SetFrame(Rect const& rc)
+void Shape::SetFrame(RectD const& rc)
 {
 	m_frame = rc;
 }

@@ -18,8 +18,10 @@
 #include <iterator>
 #include <memory>
 #include <string>
+#include <fstream> 
 #include <functional>
 
+#include <boost/optional.hpp>
 #include <boost/iterator/indirect_iterator.hpp>
 
 // TODO: reference additional headers your program requires here

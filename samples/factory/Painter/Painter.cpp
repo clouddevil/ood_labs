@@ -5,34 +5,47 @@
 #include "../libpainter/Designer.h"
 #include "../libpainter/ShapeFactroy.h"
 #include "../libpainter/PictureDraft.h"
+#include "../libpainter/SvgCanvas.h"
+#include "../libpainter/DraftPainter.h"
 
 using namespace std;
 
+void DrawCar(Designer& designer, ICanvas& canvas)
+{
+	std::istringstream s("rect 0 0 100 100");
+	auto draft = designer.CreateDraft(s);
+	PaintDraft(draft, canvas);
+}
+
+void DrawSun(Designer& designer, ICanvas& canvas)
+{
+	std::istringstream s("rect 0 0 100 100");
+	auto draft = designer.CreateDraft(s);
+	PaintDraft(draft, canvas);
+}
+
 int main()
 {
-	ShapeFactroy shapeFactory;
-	Designer designer(shapeFactory);
+	try
+	{
+		ShapeFactroy shapeFactory;
+		Designer designer(shapeFactory);
 
-	std::istringstream s(" ");
-	//std::istringstream s("rect 0 0 100 100");
+		auto draft = designer.CreateDraft(std::cin);
+		SvgCanvas canvas("draft.svg");
+		PaintDraft(draft, canvas);
 
-	auto draft = designer.CreateDraft(s);
+#if 1
+		DrawSun(designer, canvas);
+		//DrawCar(designer, canvas);
+#endif
 
-	//auto draft = designer.CreateDraft(std::cin);
+	}
+	catch (std::exception const& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-
-// 	SvgCanvas svg;
-// 	svg.BeginDraw();
-// 	{
-// 		SvgSerializer serializer(svg);
-
-// 		for (auto & shape : draft)
-// 		{
-// 			shape.Accept(painter);
-// 		}
-// 	}
-// 	svg.EndDraw();
-	
 	return 0;
 }
 
