@@ -12,7 +12,8 @@ using boost::copy;
 struct Designer_
 {
 	MockShapeFactory factory;
-	Designer designer = Designer(factory);
+	Designer designer = Designer(factory, [](std::exception const& ) {
+	});
 };
 
 BOOST_FIXTURE_TEST_SUITE(DesignerTestSuite, Designer_)

@@ -3,7 +3,7 @@
 
 struct CanvasDrawingState
 {	
-	boost::optional<int> outlineThin;
+	boost::optional<float> outlineThin;
 	boost::optional<RGBAColor> outlineColor;
 	
 	boost::optional<RGBAColor> fillColor;

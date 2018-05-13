@@ -6,8 +6,9 @@
 
 using namespace std;
 
-Designer::Designer(IShapeFactory & factory)
-	:m_factory(factory)
+Designer::Designer(IShapeFactory & factory, ErrorCallback const& errorCallback)
+	: m_errorCallback(errorCallback)
+	, m_factory(factory)
 {
 }
 
@@ -30,6 +31,6 @@ void Designer::TryAddShape(PictureDraft& draft, std::string const& shapeDescr)
 	}
 	catch (std::exception const& e)
 	{
-		std::cout << "Error: " << e.what() << std::endl;
+		m_errorCallback(e);
 	}
 }

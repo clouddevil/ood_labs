@@ -18,8 +18,9 @@ private:
 	std::string GetStyle() const;
 
 private:
-	std::ofstream m_stream;
-	CanvasDrawingState m_state;	
 	std::string m_svgFileName;
+	std::ofstream m_stream;
+
+	CanvasDrawingState m_state;		
 };
 

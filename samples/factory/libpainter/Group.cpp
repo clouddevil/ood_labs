@@ -2,16 +2,7 @@
 #include "Group.h"
 
 
-Group::Group()
-{
-}
-
-
-Group::~Group()
-{
-}
-
-void Group::Accept(IShapeVisitor& visitor) const
+void Group::Accept(IShapeVisitor& /*visitor*/) const
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
@@ -26,7 +17,7 @@ RectD Group::GetFrame() const
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-void Group::SetFrame(RectD const& rc)
+void Group::SetFrame(RectD const& /*rc*/)
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
@@ -36,7 +27,7 @@ LineStylePtr Group::GetLineStyle() const
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-void Group::SetLineStyle(LineStylePtr const& style)
+void Group::SetLineStyle(LineStylePtr const& /*style*/)
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }
@@ -46,7 +37,7 @@ FillStylePtr Group::GetFillStyle() const
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-void Group::SetFillStyle(FillStylePtr const& style)
+void Group::SetFillStyle(FillStylePtr const& /*style*/)
 {
 	throw std::logic_error("The method or operation is not implemented.");
 }

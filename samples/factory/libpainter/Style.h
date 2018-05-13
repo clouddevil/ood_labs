@@ -3,13 +3,13 @@
 
 struct LineStyle
 {
-	float thin = 1.0f;
-	DWORD color = 0x00;
+	float thin = 0.0f;
+	boost::optional<uint32_t> fillColor;
 };
 
 struct FillStyle
 {
-	DWORD color = 0x00;
+	boost::optional<uint32_t> fillColor;
 };
 
 

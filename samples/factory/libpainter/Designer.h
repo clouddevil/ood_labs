@@ -6,7 +6,8 @@ class IShapeFactory;
 class Designer
 {
 public:
-	Designer(IShapeFactory & factory);
+	using ErrorCallback = std::function<void(std::exception const&)>;
+	Designer(IShapeFactory & factory, ErrorCallback const& errorCallback);
 	
 	PictureDraft CreateDraft(std::istream & inputData);
 
@@ -15,5 +16,6 @@ private:
 
 private:
 	IShapeFactory & m_factory;
+	ErrorCallback m_errorCallback;
 };
 

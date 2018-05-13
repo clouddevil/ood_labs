@@ -44,10 +44,19 @@ void DraftPainter::Visit(shape::Ellipse const& shape)
 	m_canvas.DrawEllipse(shape.GetPos(), shape.GetSize());
 }
 
-void DraftPainter::SetCanvasShapeStyle(IShape const& /*shape*/)
-{
-
-	//m_canvas.SetFillColor()
+void DraftPainter::SetCanvasShapeStyle(IShape const& shape)
+{	
+	CanvasDrawingState state;
+	if (auto outline = shape.GetLineStyle())
+	{
+		state.outlineThin = outline->thin;
+		state.outlineColor = outline->fillColor;
+	}
+	if (auto fill = shape.GetFillStyle())
+	{
+		state.fillColor = fill->fillColor;
+	}
+	m_canvas.SetDrawingState(state);
 }
 
 void PaintDraft(IPictureDraft const& draft, ICanvas& canvas)

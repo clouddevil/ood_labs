@@ -25,6 +25,8 @@
 #include <boost/test/unit_test.hpp>
 #pragma warning (pop)
 
+
+#include <boost/optional.hpp>
 #include <boost/iterator/indirect_iterator.hpp>
 #include <boost/range/algorithm/copy.hpp>
 #include <boost/algorithm/cxx11/all_of.hpp>
