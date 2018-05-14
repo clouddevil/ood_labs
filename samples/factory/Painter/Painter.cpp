@@ -36,23 +36,21 @@ void DrawStr(std::string const& str, Designer& designer, ICanvas& canvas)
 void DrawCar(Designer& designer, ICanvas& canvas)
 {
 	std::ostringstream buffer;
-	buffer << "rect 30 40 100 100 0xFF - 1  " << std::endl;
-	buffer << "triangle 75 75 200 100 140 140 0xFFFFFF 0xFF 1" << std::endl;
-	//buffer << "ellipse 75 75 200 100 s " << std::endl;
-	buffer << "ellipse 600 600 50 50 0xFF0000 - " << std::endl;
-
+	buffer << "rect 180 460 400 80 0xFF0000 -  " << std::endl;
+	buffer << "rect 330 400 250 60 0xFF0000 0x00 1 " << std::endl;	
+	buffer << "ellipse 268 543 35 35 0xAA000000 0x00 2" << std::endl;
+	buffer << "ellipse 518 540 35 35 0xAA000000 0x00 2 " << std::endl;
 	DrawStr(buffer.str(), designer, canvas);
 }
 
 void DrawSun(Designer& designer, ICanvas& canvas)
 {
 	std::ostringstream buffer;
-	buffer << "ellipse 800 0 150 90 0xFFFF00 0x99FFFF00 10" << std::endl;	
-	buffer << "triangle 775 75 200 100 140 140 0xFFFF00 0x99FFFF00 1" << std::endl;
-	//buffer << "ellipse 75 75 200 100 s " << std::endl;
-	//buffer << "ellipse 600 600 50 50 0xFF0000 - " << std::endl;
-
-
+	buffer << "ellipse 800 0 150 90 0xFFFF00 0x99FFAA00 10" << std::endl;
+	buffer << "triangle 760 125 732 197 750 197 0xFFFF00 0xAAFFBB00 2" << std::endl;
+	buffer << "triangle 679 98 601 148 625 158 0xFFFF00 0xAAFFBB00 2" << std::endl;
+	buffer << "triangle 601 39 495 34 502 52 0xFFFF00 0xAAFFBB00 2" << std::endl;
+	
 	DrawStr(buffer.str(), designer, canvas);
 }
 
@@ -80,7 +78,7 @@ int main()
 
 #if 1
 		DrawSun(designer, canvas);
-		//DrawCar(designer, canvas);
+		DrawCar(designer, canvas);
 #endif
 
 		canvas.EndDraw();
