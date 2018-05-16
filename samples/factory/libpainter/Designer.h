@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include "IShape.h"
+#include "ShapeStorage.h"
 
 class PictureDraft;
 class IShapeFactory;
@@ -12,10 +14,15 @@ public:
 	PictureDraft CreateDraft(std::istream & inputData);
 
 private:
+	void PopGroupShape(PictureDraft& shape);
+	void InsertShape(PictureDraft& draft, IShapeUniquePtr&& shape);
 	void TryAddShape(PictureDraft& draft, std::string const& shapeDescr);
+
+	IShapeUniquePtr GetLastShape();
 
 private:
 	IShapeFactory & m_factory;
-	ErrorCallback m_errorCallback;
+	ShapeStorage m_groups;
+	ErrorCallback m_errorCallback;	
 };
 

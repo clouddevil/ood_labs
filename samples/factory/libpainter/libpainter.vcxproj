@@ -151,6 +151,7 @@
     <ClInclude Include="IPictureDraft.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="IShapeFactory.h" />
+    <ClInclude Include="ShapeStorage.h" />
     <ClInclude Include="Shapes_fwd.h" />
     <ClInclude Include="Style.h" />
     <ClInclude Include="PictureDraft.h" />

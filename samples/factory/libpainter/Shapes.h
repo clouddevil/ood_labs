@@ -70,20 +70,20 @@ class Ellipse final
 	: public Shape
 {
 public:
-	Ellipse(PointD const& pos, PointD const& size)
+	Ellipse(PointD const& pos, PointD const& radius)
 		: m_pos(pos)
-		, m_size(size)
+		, m_radius(radius)
 	{
 	}
 
-	PointD const& GetPos()  const
+	PointD const& GetCenter()  const
 	{
 		return m_pos;
 	}
 
 	PointD const& GetSize() const
 	{
-		return m_size;
+		return m_radius;
 	}
 
 	void Accept(IShapeVisitor& visitor) const
@@ -93,7 +93,7 @@ public:
 
 private:
 	PointD m_pos;
-	PointD m_size;
+	PointD m_radius;
 };
 
 

@@ -4,12 +4,23 @@
 struct LineStyle
 {
 	float thin = 0.0f;
-	boost::optional<uint32_t> fillColor;
+	uint32_t fillColor = 0;
+
+	bool operator==(LineStyle const& rhs) const
+	{
+		const bool thinEquals = abs(thin - rhs.thin) < std::numeric_limits<float>::epsilon();
+		return (thinEquals) && (fillColor == rhs.fillColor);
+	}
 };
 
 struct FillStyle
 {
-	boost::optional<uint32_t> fillColor;
+	uint32_t fillColor = 0;
+
+	bool operator==(FillStyle const& rhs) const
+	{
+		return (fillColor == rhs.fillColor);
+	}
 };
 
 

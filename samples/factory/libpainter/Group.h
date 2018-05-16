@@ -5,9 +5,6 @@ class Group
 	: public IGroup
 {
 public:
-	Group();
-	~Group();
-
 	virtual void Accept(IShapeVisitor& visitor) const override;
 
 	virtual IGroup* GetGroup() override;
@@ -20,5 +17,12 @@ public:
 	
 	FillStylePtr GetFillStyle() const override;
 	void SetFillStyle(FillStylePtr const& style) override;
+
+	uint32_t GetShapeCount() const override;
+	IShape& GetShapeAtIndex(uint32_t index) override;
+	void InsertShape(IShapeUniquePtr&& shape) override;
+	
+private:
+	ShapeStorage m_shapes;
 };
 

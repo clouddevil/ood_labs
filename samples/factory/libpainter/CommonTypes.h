@@ -36,6 +36,20 @@ struct RectT
 	{
 	}
 
+	RectT<T>& Union(RectT<T> const& rc)
+	{		
+		auto l = std::min<T>(rc.left, left);
+		auto t = std::min<T>(rc.top, top);
+
+		auto r = std::max<T>(rc.left + rc.width, left + width);
+		auto b = std::max<T>(rc.top + rc.height, top + height);
+
+		left = l;
+		top = t;
+		width = r - l;
+		height = b - t;
+		return *this;
+	}
 };
 
 using PointD = PointT<double>;

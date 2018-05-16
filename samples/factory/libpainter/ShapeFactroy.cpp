@@ -2,6 +2,7 @@
 #include "ShapeFactroy.h"
 #include "Shapes.h"
 #include <boost\lexical_cast.hpp>
+#include "Group.h"
 
 using namespace std;
 using TokenIt = vector<std::string>::const_iterator;
@@ -109,7 +110,6 @@ IShapeUniquePtr ShapeFactroy::CreateShape(const std::string & description)
 		return nullptr;
 	}
 
-
 	auto const& shapeType = tokens.front();
 	if (shapeType == "rect")
 	{
@@ -122,7 +122,15 @@ IShapeUniquePtr ShapeFactroy::CreateShape(const std::string & description)
 	if (shapeType == "ellipse")
 	{
 		return CreateEllipse(tokens.begin(), tokens.end());
+	}	
+	if (shapeType == "+group")
+	{
+		return std::make_unique<Group>();
+	}	
+	if (shapeType == "-group")
+	{
+		// ok
+		return nullptr;
 	}
-	
 	throw std::runtime_error("Unknown shape description");
 }

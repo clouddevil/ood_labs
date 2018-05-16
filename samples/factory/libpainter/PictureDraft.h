@@ -9,8 +9,8 @@ public:
 
 	bool IsEmpty()const;
 
-	ConstIterator begin()const;
-	ConstIterator end()const;
+	ShapeIterator begin()const;
+	ShapeIterator end()const;
 
 	void AddShape(IShapeUniquePtr&& shape);
 
@@ -24,12 +24,12 @@ private:
 	ShapeStorage m_shapes;
 };
 
-inline PictureDraft::ConstIterator begin(const PictureDraft & draft)
+inline ShapeIterator begin(const PictureDraft & draft)
 {
 	return draft.begin();
 }
 
-inline PictureDraft::ConstIterator end(const PictureDraft & draft)
+inline ShapeIterator end(const PictureDraft & draft)
 {
 	return draft.end();
 }

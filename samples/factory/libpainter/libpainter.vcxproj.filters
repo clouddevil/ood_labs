@@ -78,6 +78,12 @@
     <ClInclude Include="Group.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="IShapeVisitor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeStorage.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PictureDraft.cpp">
@@ -93,9 +99,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ShapeFactroy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IShapeVisitor.h">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SvgCanvas.cpp">

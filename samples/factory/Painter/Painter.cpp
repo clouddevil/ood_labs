@@ -16,6 +16,8 @@ void Help()
 	std::cout << "rect <pt> <size> <style>" << std::endl;
 	std::cout << "ellipse <pt> <size> <style>" << std::endl;
 	std::cout << "triangle <pt> <pt> <pt> <style>" << std::endl;
+	std::cout << "+group" << std::endl;
+	std::cout << "-group" << std::endl;
 	
 	std::cout << "<pt> := int int" << std::endl;
 	std::cout << "<size> := int int" << std::endl;
@@ -46,10 +48,12 @@ void DrawCar(Designer& designer, ICanvas& canvas)
 void DrawSun(Designer& designer, ICanvas& canvas)
 {
 	std::ostringstream buffer;
+	buffer << "+group" << std::endl;
 	buffer << "ellipse 800 0 150 90 0xFFFF00 0x99FFAA00 10" << std::endl;
 	buffer << "triangle 760 125 732 197 750 197 0xFFFF00 0xAAFFBB00 2" << std::endl;
 	buffer << "triangle 679 98 601 148 625 158 0xFFFF00 0xAAFFBB00 2" << std::endl;
 	buffer << "triangle 601 39 495 34 502 52 0xFFFF00 0xAAFFBB00 2" << std::endl;
+	buffer << "-group" << std::endl;
 	
 	DrawStr(buffer.str(), designer, canvas);
 }

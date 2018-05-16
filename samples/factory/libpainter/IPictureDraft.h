@@ -1,14 +1,12 @@
 #pragma once
 #include "IShape.h"
+#include "ShapeStorage.h"
 
 class IPictureDraft
 {
 public:
-	using ShapeStorage = std::vector<IShapeUniquePtr>;
-	using ConstIterator = boost::indirect_iterator<ShapeStorage::const_iterator, const IShape&>;
-
-	virtual ConstIterator begin()const = 0;
-	virtual ConstIterator end()const = 0;
+	virtual ShapeIterator begin()const = 0;
+	virtual ShapeIterator end()const = 0;
 
 	virtual ~IPictureDraft() = default;
 };

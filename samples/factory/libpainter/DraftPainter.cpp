@@ -41,7 +41,7 @@ void DraftPainter::Visit(shape::Ellipse const& shape)
 {
 	SetCanvasShapeStyle(shape);
 
-	m_canvas.DrawEllipse(shape.GetPos(), shape.GetSize());
+	m_canvas.DrawEllipse(shape.GetCenter(), shape.GetSize());
 }
 
 void DraftPainter::SetCanvasShapeStyle(IShape const& shape)
