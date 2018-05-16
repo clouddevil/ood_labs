@@ -9,9 +9,6 @@ public:
 
 	IGroup* GetGroup() override;
 
-	RectD GetFrame()const override;
-	void SetFrame(RectD const& rc) override;
-
 	LineStylePtr GetLineStyle()const override;
 	void SetLineStyle(LineStylePtr const& style) override;
 
@@ -19,7 +16,7 @@ public:
 	void SetFillStyle(FillStylePtr const& style) override;
 
 private:
-	RectD m_frame;
+	//RectD m_frame;
 	FillStylePtr m_fill;
 	LineStylePtr m_line;
 };

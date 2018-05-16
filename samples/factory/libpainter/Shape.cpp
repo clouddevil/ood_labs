@@ -11,16 +11,6 @@ IGroup* Shape::GetGroup()
 	return nullptr;
 }
 
-RectD Shape::GetFrame()const
-{
-	return m_frame;
-}
-
-void Shape::SetFrame(RectD const& rc)
-{
-	m_frame = rc;
-}
-
 LineStylePtr Shape::GetLineStyle()const
 {
 	return m_line;

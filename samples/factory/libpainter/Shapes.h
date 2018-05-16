@@ -2,6 +2,7 @@
 #include "Shape.h"
 #include "Shapes_fwd.h"
 #include "CommonTypes.h"
+#include "Math.h"
 
 namespace shape
 {
@@ -13,6 +14,16 @@ public:
 	Rectangle(RectD rc)
 		: m_rect(rc)
 	{
+	}
+
+	RectD GetFrame() const override
+	{
+		return m_rect;
+	}
+
+	void SetFrame(RectD const& rc) override
+	{
+		m_rect = rc;
 	}
 
 	RectD const& GetRect() const
@@ -38,6 +49,19 @@ public:
 		, m_vtx2(v2)
 		, m_vtx3(v3)
 	{
+	}
+
+	RectD GetFrame() const override
+	{
+		return CalcuateBounds({m_vtx1, m_vtx2, m_vtx3});
+	}
+
+	void SetFrame(RectD const& newFrame) override
+	{
+		auto frame = GetFrame();
+		m_vtx1 = MovePoint(m_vtx1, frame, newFrame);
+		m_vtx2 = MovePoint(m_vtx2, frame, newFrame);
+		m_vtx3 = MovePoint(m_vtx3, frame, newFrame);
 	}
 
 	PointD const& GetVertex1()  const
@@ -70,15 +94,31 @@ class Ellipse final
 	: public Shape
 {
 public:
-	Ellipse(PointD const& pos, PointD const& radius)
-		: m_pos(pos)
+	Ellipse(PointD const& center, PointD const& radius)
+		: m_center(center)
 		, m_radius(radius)
 	{
 	}
 
+	RectD GetFrame() const override
+	{
+		RectD frame;
+		frame.left = m_center.x - m_radius.x;
+		frame.top = m_center.y - m_radius.y;
+		frame.width = 2 * m_radius.x;
+		frame.height = 2 * m_radius.y;
+		return frame;
+	}
+
+	void SetFrame(RectD const& newFrame) override
+	{
+		m_radius = { newFrame.width / 2, newFrame.height / 2 };
+		m_center = { newFrame.left + m_radius.x, newFrame.top + m_radius.y };		
+	}
+
 	PointD const& GetCenter()  const
 	{
-		return m_pos;
+		return m_center;
 	}
 
 	PointD const& GetSize() const
@@ -92,7 +132,7 @@ public:
 	};
 
 private:
-	PointD m_pos;
+	PointD m_center;
 	PointD m_radius;
 };
 

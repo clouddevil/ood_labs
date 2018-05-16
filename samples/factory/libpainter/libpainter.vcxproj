@@ -151,6 +151,7 @@
     <ClInclude Include="IPictureDraft.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="IShapeFactory.h" />
+    <ClInclude Include="Math.h" />
     <ClInclude Include="ShapeStorage.h" />
     <ClInclude Include="Shapes_fwd.h" />
     <ClInclude Include="Style.h" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClCompile Include="Designer.cpp" />
     <ClCompile Include="Group.cpp" />
+    <ClCompile Include="Math.cpp" />
     <ClCompile Include="SvgCanvas.cpp" />
     <ClCompile Include="DraftPainter.cpp" />
     <ClInclude Include="IShapeVisitor.h">

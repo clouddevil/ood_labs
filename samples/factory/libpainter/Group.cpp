@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Group.h"
+#include "Math.h"
 
 namespace
 {
@@ -50,9 +51,15 @@ RectD Group::GetFrame() const
 	return frame;
 }
 
-void Group::SetFrame(RectD const& /*rc*/)
+void Group::SetFrame(RectD const& groupNewFrame)
 {
-	throw std::logic_error("The method or operation is not implemented.");
+	auto groupFrame = GetFrame();
+	for (auto& s : m_shapes)
+	{
+		auto frame = s->GetFrame();
+		auto newFrame = MoveRect(frame, groupFrame, groupNewFrame);
+		s->SetFrame(newFrame);
+	}
 }
 
 LineStylePtr Group::GetLineStyle() const

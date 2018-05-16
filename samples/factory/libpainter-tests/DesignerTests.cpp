@@ -12,7 +12,8 @@ using boost::copy;
 struct Designer_
 {
 	MockShapeFactory factory;
-	Designer designer = Designer(factory, [](std::exception const& ) {
+	Designer designer = Designer(factory, [](std::exception const& e) {
+		BOOST_FAIL(e.what());
 	});
 };
 
@@ -29,7 +30,9 @@ BOOST_FIXTURE_TEST_SUITE(DesignerTestSuite, Designer_)
 		struct when_creating_draft_with_non_empty_input_ : Designer_
 		{
 			vector<string> expectedShapeDescriptions = {
-				"square", "circle", "triangle"
+				"rect", 
+				"ellipse",
+				"triangle"
 			};
 			stringstream strm;
 			PictureDraft returnedDraft;

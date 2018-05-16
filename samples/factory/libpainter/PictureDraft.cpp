@@ -24,5 +24,9 @@ void PictureDraft::AddShape(IShapeUniquePtr&& shape)
 	}
 }
 
+IShape& PictureDraft::GetShapeAtIndex(uint32_t index)
+{
+	return *m_shapes.at(index);
+}
 
 

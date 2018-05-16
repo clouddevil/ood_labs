@@ -20,6 +20,7 @@
 #include <memory>
 #include <string>
 #include <iostream>
+#include <set>
 #include <functional>
 
 #include <boost/optional.hpp>

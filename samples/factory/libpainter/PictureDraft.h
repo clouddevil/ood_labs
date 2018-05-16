@@ -14,6 +14,8 @@ public:
 
 	void AddShape(IShapeUniquePtr&& shape);
 
+	IShape& GetShapeAtIndex(uint32_t index);
+
 	PictureDraft(PictureDraft &&) = default;
 	PictureDraft& operator=(PictureDraft &&) = default;
 
