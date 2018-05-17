@@ -75,7 +75,7 @@ LineStylePtr Group::GetLineStyle() const
 
 		if (equal && style)
 		{
-			return std::make_shared<LineStyle>(*style);
+			return style->Clone();
 		}
 	}
 	return nullptr;
@@ -102,7 +102,7 @@ FillStylePtr Group::GetFillStyle() const
 
 		if (equal && style)
 		{
-			return std::make_shared<FillStyle>(*style);
+			return style->Clone();
 		}
 	}
 	return nullptr;
