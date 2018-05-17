@@ -15,8 +15,7 @@ public:
 	FillStylePtr GetFillStyle()const override;
 	void SetFillStyle(FillStylePtr const& style) override;
 
-private:
-	//RectD m_frame;
+private:	
 	FillStylePtr m_fill;
 	LineStylePtr m_line;
 };

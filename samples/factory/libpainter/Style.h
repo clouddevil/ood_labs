@@ -1,5 +1,10 @@
 #pragma once
 
+struct LineStyle;
+struct FillStyle;
+
+using LineStylePtr = std::shared_ptr<LineStyle>;
+using FillStylePtr = std::shared_ptr<FillStyle>;
 
 struct LineStyle
 {
@@ -11,6 +16,11 @@ struct LineStyle
 		const bool thinEquals = abs(thin - rhs.thin) < std::numeric_limits<float>::epsilon();
 		return (thinEquals) && (fillColor == rhs.fillColor);
 	}
+
+	LineStylePtr Clone() const
+	{
+		return std::make_shared<LineStyle>(*this);
+	}
 };
 
 struct FillStyle
@@ -21,8 +31,13 @@ struct FillStyle
 	{
 		return (fillColor == rhs.fillColor);
 	}
+
+	FillStylePtr Clone() const
+	{
+		return std::make_shared<FillStyle>(*this);
+	}
+	
 };
 
 
-using LineStylePtr = std::shared_ptr<LineStyle>;
-using FillStylePtr = std::shared_ptr<FillStyle>;
+
