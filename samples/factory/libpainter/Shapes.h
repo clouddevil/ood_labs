@@ -11,7 +11,7 @@ class Rectangle final
 	: public Shape
 {
 public:
-	Rectangle(RectD rc)
+	Rectangle(RectD const& rc)
 		: m_rect(rc)
 	{
 	}

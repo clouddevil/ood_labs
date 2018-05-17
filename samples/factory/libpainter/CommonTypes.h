@@ -50,6 +50,16 @@ struct RectT
 		height = b - t;
 		return *this;
 	}
+
+	static bool Equal(T const& a, T const& b)
+	{
+		return abs(a - b) <= std::numeric_limits<T>::epsilon();
+	}
+
+	bool operator==(RectT<T> const& rc) const
+	{
+		return Equal(rc.left, left) && Equal(rc.top, top) && Equal(rc.width, width) && Equal(rc.height, height);
+	}
 };
 
 using PointD = PointT<double>;
