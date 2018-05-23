@@ -1,8 +1,9 @@
 #pragma once
 
 #include "IShapeVisitor.h"
-#include "Style.h"
 #include "CommonTypes.h"
+#include "IOutlineStyle.h"
+#include "IFillStyle.h"
 
 class IGroup;
 
@@ -18,11 +19,11 @@ public:
 	virtual RectD GetFrame() const = 0;
 	virtual void SetFrame(RectD const& rc) = 0;
 
-	virtual LineStylePtr GetLineStyle() const = 0;
-	virtual void SetLineStyle(LineStylePtr const& style) = 0;
+	virtual IOutlineStyle& GetLineStyle() = 0;
+	virtual IOutlineStyle const& GetLineStyle() const = 0;
 	
-	virtual FillStylePtr GetFillStyle() const = 0;
-	virtual void SetFillStyle(FillStylePtr const& style) = 0;	
+	virtual IFillStyle& GetFillStyle() = 0;
+	virtual IFillStyle const& GetFillStyle() const = 0;
 };
 
 using IShapeUniquePtr = std::unique_ptr<IShape>;

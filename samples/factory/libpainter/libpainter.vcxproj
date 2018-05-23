@@ -143,18 +143,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonTypes.h" />
+    <ClInclude Include="CompoundFillStyle.h" />
     <ClInclude Include="Designer.h" />
+    <ClInclude Include="FillStyle.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="ICanvas.h" />
     <ClInclude Include="IGroup.h" />
+    <ClInclude Include="IOutlineStyle.h" />
     <ClInclude Include="IPainter.h" />
     <ClInclude Include="IPictureDraft.h" />
     <ClInclude Include="IShape.h" />
     <ClInclude Include="IShapeFactory.h" />
+    <ClInclude Include="IFillStyle.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="OutlineStyle.h" />
     <ClInclude Include="ShapeStorage.h" />
     <ClInclude Include="Shapes_fwd.h" />
-    <ClInclude Include="Style.h" />
     <ClInclude Include="PictureDraft.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="Shape.h" />
@@ -182,6 +186,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CompoundOutlineStyle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

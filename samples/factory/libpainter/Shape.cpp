@@ -1,11 +1,6 @@
 #include "stdafx.h"
 #include "Shape.h"
 
-template <typename T>
-T Clone(T const& t)
-{
-	return t ? t->Clone() : nullptr;
-}
 
 void Shape::Accept(IShapeVisitor& /*visitor*/) const
 {
@@ -17,22 +12,23 @@ IGroup* Shape::GetGroup()
 	return nullptr;
 }
 
-LineStylePtr Shape::GetLineStyle()const
+IOutlineStyle& Shape::GetLineStyle()
 {
-	return Clone(m_line);
+	return m_lineStyle;
 }
 
-void Shape::SetLineStyle(LineStylePtr const& style)
+IOutlineStyle const& Shape::GetLineStyle() const
 {
-	m_line = Clone(style);
+	return m_lineStyle;
 }
 
-FillStylePtr Shape::GetFillStyle()const
+IFillStyle& Shape::GetFillStyle()
 {
-	return Clone(m_fill);
+	return m_fillStyle;
 }
 
-void Shape::SetFillStyle(FillStylePtr const& style)
+IFillStyle const& Shape::GetFillStyle() const
 {
-	m_fill = Clone(style);
+	return m_fillStyle;
 }
+

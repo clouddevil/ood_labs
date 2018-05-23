@@ -42,49 +42,61 @@
     <ClInclude Include="targetver.h">
       <Filter>Support Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShapeFactroy.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IShape.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGroup.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="IPainter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="IPictureDraft.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Style.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shapes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shapes_fwd.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SvgCanvas.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonTypes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DraftPainter.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Group.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="IShape.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IShapeVisitor.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeFactroy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes_fwd.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ShapeStorage.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Math.h">
+    <ClInclude Include="Shapes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SvgCanvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DraftPainter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IFillStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IOutlineStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FillStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OutlineStyle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompoundFillStyle.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -116,5 +128,10 @@
     <ClCompile Include="Math.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CompoundOutlineStyle.h">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

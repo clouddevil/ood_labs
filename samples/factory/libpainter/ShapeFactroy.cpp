@@ -48,6 +48,7 @@ PointD ParsePoint(TokenIt& start, TokenIt end)
 
 IShapeUniquePtr ParseShapeStyle(IShapeUniquePtr&& shape, TokenIt start, TokenIt end)
 {
+	/*
 	AdvanceAndCheck(start, end);	
 	if (*start != NoStyleToken)
 	{
@@ -69,7 +70,7 @@ IShapeUniquePtr ParseShapeStyle(IShapeUniquePtr&& shape, TokenIt start, TokenIt 
 		}
 		shape->SetLineStyle(style);
 	}	
-
+	*/
 	return move(shape);
 }
 
@@ -102,6 +103,8 @@ IShapeUniquePtr CreateEllipse(TokenIt start, TokenIt end)
 
 IShapeUniquePtr ShapeFactroy::CreateShape(const std::string & description)
 {
+	Group g;
+
 	istringstream iss(description);
 	vector<std::string> tokens{ istream_iterator<string>{iss}, istream_iterator<string>{} };
 
@@ -125,7 +128,7 @@ IShapeUniquePtr ShapeFactroy::CreateShape(const std::string & description)
 	}	
 	if (shapeType == "+group")
 	{
-		return std::make_unique<Group>();
+		//return std::make_unique<Group>();
 	}	
 	if (shapeType == "-group")
 	{
