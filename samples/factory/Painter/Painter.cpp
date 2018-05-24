@@ -7,6 +7,7 @@
 #include "../libpainter/PictureDraft.h"
 #include "../libpainter/SvgCanvas.h"
 #include "../libpainter/DraftPainter.h"
+#include "../libpainter/OutlineStyle.h"
 
 using namespace std;
 
@@ -77,24 +78,21 @@ void DrawBullshit(Designer& designer, ICanvas& canvas)
 	auto& shape = draft.GetShapeAtIndex(0);
 	
 	{
-		auto line = std::make_shared<LineStyle>();
-		line->fillColor = 0x00;
-		line->thin = 2;
-		shape.SetLineStyle(line);
-
+		auto& line = shape.GetOutlineStyle();
+		line.SetColor(0x00);
+		line.SetThickness(2);
+		
 		shape.SetFrame({ 50, 70, 100, 200 });
 		PaintDraft(draft, canvas);
 	}
 
 	{
-		auto fill = std::make_shared<FillStyle>();
-		fill->fillColor = 0x77000000;
-		shape.SetFillStyle(fill);
-
-		auto line = std::make_shared<LineStyle>();
-		line->fillColor = 0x77FF00FF;
-		line->thin = 3;
-		shape.SetLineStyle(line);
+		auto& fill = shape.GetFillStyle();
+		fill.SetColor(0x77000000);
+		
+		auto& line = shape.GetOutlineStyle();
+		line.SetColor(0x77FF00FF);
+		line.SetThickness(3);
 
 		shape.SetFrame({ 300, 200, 470, 120 });
 		PaintDraft(draft, canvas);

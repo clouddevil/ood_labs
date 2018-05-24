@@ -47,7 +47,7 @@ void DraftPainter::Visit(shape::Ellipse const& shape)
 void DraftPainter::SetCanvasShapeStyle(IShape const& shape)
 {
 	auto& fill = shape.GetFillStyle();
-	auto& outline = shape.GetLineStyle();
+	auto& outline = shape.GetOutlineStyle();
 
 	CanvasDrawingState state;
 	state.outlineThin = outline.GetThickness();

@@ -12,12 +12,12 @@ IGroup* Shape::GetGroup()
 	return nullptr;
 }
 
-IOutlineStyle& Shape::GetLineStyle()
+IOutlineStyle& Shape::GetOutlineStyle()
 {
 	return m_lineStyle;
 }
 
-IOutlineStyle const& Shape::GetLineStyle() const
+IOutlineStyle const& Shape::GetOutlineStyle() const
 {
 	return m_lineStyle;
 }

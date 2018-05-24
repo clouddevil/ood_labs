@@ -19,8 +19,8 @@ public:
 	virtual RectD GetFrame() const = 0;
 	virtual void SetFrame(RectD const& rc) = 0;
 
-	virtual IOutlineStyle& GetLineStyle() = 0;
-	virtual IOutlineStyle const& GetLineStyle() const = 0;
+	virtual IOutlineStyle& GetOutlineStyle() = 0;
+	virtual IOutlineStyle const& GetOutlineStyle() const = 0;
 	
 	virtual IFillStyle& GetFillStyle() = 0;
 	virtual IFillStyle const& GetFillStyle() const = 0;

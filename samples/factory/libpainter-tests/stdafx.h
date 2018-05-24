@@ -27,6 +27,7 @@
 
 
 #include <boost/optional.hpp>
+#include <boost/optional/optional_io.hpp>
 #include <boost/iterator/indirect_iterator.hpp>
 #include <boost/range/algorithm/copy.hpp>
 #include <boost/algorithm/cxx11/all_of.hpp>

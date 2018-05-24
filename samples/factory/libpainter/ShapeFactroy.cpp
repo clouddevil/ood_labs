@@ -47,30 +47,26 @@ PointD ParsePoint(TokenIt& start, TokenIt end)
 }
 
 IShapeUniquePtr ParseShapeStyle(IShapeUniquePtr&& shape, TokenIt start, TokenIt end)
-{
-	/*
+{	
 	AdvanceAndCheck(start, end);	
 	if (*start != NoStyleToken)
-	{
-		auto style = std::make_shared<FillStyle>();
-		style->fillColor = ParseColor(start);
-		shape->SetFillStyle(style);
+	{		
+		auto& s = shape->GetFillStyle();
+		s.SetColor(ParseColor(start));		
 	}
 
 	AdvanceAndCheck(start, end);
 	if (*start != NoStyleToken)
 	{
-		auto style = std::make_shared<LineStyle>();
-		style->fillColor = ParseColor(start);
+		auto& s = shape->GetOutlineStyle();
+		s.SetColor(ParseColor(start));
 		
 		std::advance(start, 1);
 		if (start != end)
 		{
-			style->thin = 1.0f * ParseInt(start);
+			s.SetThickness(1.0f * ParseInt(start));
 		}
-		shape->SetLineStyle(style);
-	}	
-	*/
+	}
 	return move(shape);
 }
 
@@ -103,8 +99,6 @@ IShapeUniquePtr CreateEllipse(TokenIt start, TokenIt end)
 
 IShapeUniquePtr ShapeFactroy::CreateShape(const std::string & description)
 {
-	Group g;
-
 	istringstream iss(description);
 	vector<std::string> tokens{ istream_iterator<string>{iss}, istream_iterator<string>{} };
 
@@ -128,12 +122,7 @@ IShapeUniquePtr ShapeFactroy::CreateShape(const std::string & description)
 	}	
 	if (shapeType == "+group")
 	{
-		//return std::make_unique<Group>();
+		return std::make_unique<Group>();
 	}	
-	if (shapeType == "-group")
-	{
-		// ok
-		return nullptr;
-	}
 	throw std::runtime_error("Unknown shape description");
 }

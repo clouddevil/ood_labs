@@ -39,22 +39,22 @@ public:
 		throw std::logic_error("The method or operation is not implemented.");
 	}
 
-	LineStylePtr GetLineStyle() const override
+	IOutlineStyle& GetOutlineStyle() override
 	{
 		throw std::logic_error("The method or operation is not implemented.");
 	}
 
-	void SetLineStyle(LineStylePtr const& /*style*/) override
+	IOutlineStyle const& GetOutlineStyle() const override
 	{
 		throw std::logic_error("The method or operation is not implemented.");
 	}
 
-	FillStylePtr GetFillStyle() const override
+	IFillStyle& GetFillStyle() override
 	{
 		throw std::logic_error("The method or operation is not implemented.");
 	}
 
-	void SetFillStyle(FillStylePtr const& /*style*/) override
+	IFillStyle const& GetFillStyle() const override
 	{
 		throw std::logic_error("The method or operation is not implemented.");
 	}

@@ -11,8 +11,8 @@ public:
 
 	IGroup* GetGroup() override;
 
-	IOutlineStyle& GetLineStyle() override;
-	IOutlineStyle const& GetLineStyle() const override;
+	IOutlineStyle& GetOutlineStyle() override;
+	IOutlineStyle const& GetOutlineStyle() const override;
 	
 	IFillStyle& GetFillStyle() override;
 	IFillStyle const& GetFillStyle() const override;

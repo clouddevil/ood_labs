@@ -3,102 +3,84 @@
 #include "IShape.h"
 #include "OutlineStyle.h"
 
-
-template<typename TStyle, typename V >
-using DereferenceFunc = std::function< TStyle&(V const&) >;
-
-template<typename TStyle, typename V>
-class StyleIterator
-	: public boost::iterator_facade<StyleIterator<T>, TStyle, std::forward_iterator_tag>
-{	
-public:
-	using StyleIteratorT = StyleIterator<TStyle, V>;
-
-	StyleIterator(ShapeStorage::iterator const& it, DereferenceFunc<TStyle, V> const& func)
-		: m_it(it)
-		, m_dereference(func)
-	{
-	}
-
-	bool equal(StyleIteratorT const& other) const
-	{
-		return m_it == other.m_it;
-	}
-
-	void increment()
-	{
-		m_it++;
-	}
-
-	TStyle& dereference() const
-	{
-		return m_dereference(*m_it);
-	}
-
-	ShapeStorage::iterator m_it;
-	DereferenceFunc<T, V> const& m_dereference;
-};
-
-template<class T>
-class StyleRange
+class IOutlineStyleProvider
 {
 public:
-	StyleRange(ShapeStorage& storage)
-		: m_shapes(storage)
-	{
-	}
-
-	StyleIterator<T, ShapeStorage::iterator> begin() const
-	{
-		
-	}
-
-	StyleIterator<T, ShapeStorage::iterator> end() const
-	{
-
-	}
-
-private:
-	ShapeStorage& m_shapes;
-	DereferenceFunc<T> m_derefFunc;
+	virtual uint32_t GetOutlineStyleCount() const = 0;
+	virtual IOutlineStyle& GetOutlineStyle(uint32_t index) const = 0;
 };
-
 
 class CompoundOutlineStyle
 	: public IOutlineStyle
 {
 public:
-	CompoundOutlineStyle()
+	CompoundOutlineStyle(IOutlineStyleProvider const& provider)
+		: m_provider(provider)
 	{
-
 	}
-
-	StyleRange<OutlineStyle> styles;
 
 	boost::optional<RGBAColor> GetColor() const override
 	{
-		boost::optional<RGBAColor> color;		
-		for (auto& s : styles)
+		auto styleCount = m_provider.GetOutlineStyleCount();
+		if (styleCount > 0)
 		{
+			auto const& s = m_provider.GetOutlineStyle(0);
+
 			auto color = s.GetColor();
-			s.SetColor(0x00);
+			for (auto i = 1u; i < styleCount; ++i)
+			{
+				auto& nextStyle = m_provider.GetOutlineStyle(i);
+				if (color != nextStyle.GetColor())
+				{
+					return boost::none;
+				}
+			}
+			return color;
 		}
-		return color;
+		return boost::none;
 	}
 
-	void SetColor(RGBAColor /*color*/) override
+	void SetColor(RGBAColor color) override
 	{
-		
-		throw std::logic_error("The method or operation is not implemented.");
+		auto styleCount = m_provider.GetOutlineStyleCount();		
+		for (auto i = 0u; i < styleCount; ++i)
+		{
+			auto& s = m_provider.GetOutlineStyle(i);
+			s.SetColor(color);
+		}
 	}
 
 	boost::optional<float> GetThickness() const override
 	{
-		throw std::logic_error("The method or operation is not implemented.");
+		auto styleCount = m_provider.GetOutlineStyleCount();
+		if (styleCount > 0)
+		{
+			auto& s = m_provider.GetOutlineStyle(0);
+
+			auto thickness = s.GetThickness();
+			for (auto i = 1u; i < styleCount; ++i)
+			{
+				auto& nextStyle = m_provider.GetOutlineStyle(i);
+				if (thickness != nextStyle.GetThickness())
+				{
+					return boost::none;
+				}
+			}
+			return thickness;
+		}
+		return boost::none;
 	}
 
-	void SetThickness(float /*thickness*/) override
+	void SetThickness(float thickness) override
 	{
-		throw std::logic_error("The method or operation is not implemented.");
+		auto styleCount = m_provider.GetOutlineStyleCount();
+		for (auto i = 0u; i < styleCount; ++i)
+		{
+			auto& s = m_provider.GetOutlineStyle(i);
+			s.SetThickness(thickness);
+		}
 	}
+
+private:
+	IOutlineStyleProvider const& m_provider;
 };

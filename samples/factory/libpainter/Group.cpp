@@ -3,10 +3,9 @@
 #include "Math.h"
 
 Group::Group()
-	: m_fillStyle()
-	, m_outlineStyle(m_shapes)
+	: m_fillStyle(*this)
+	, m_outlineStyle(*this)
 {
-
 }
 
 void Group::Accept(IShapeVisitor& visitor) const
@@ -64,12 +63,12 @@ void Group::InsertShape(IShapeUniquePtr&& shape)
 	m_shapes.emplace_back(std::move(shape));
 }
 
-IOutlineStyle& Group::GetLineStyle()
+IOutlineStyle& Group::GetOutlineStyle()
 {
 	return m_outlineStyle;
 }
 
-IOutlineStyle const& Group::GetLineStyle() const
+IOutlineStyle const& Group::GetOutlineStyle() const
 {
 	return m_outlineStyle;
 }
@@ -83,3 +82,26 @@ IFillStyle const& Group::GetFillStyle() const
 {
 	return m_fillStyle;
 }
+
+IFillStyle& Group::GetFillStyle(uint32_t index) const
+{
+	auto const& s = m_shapes.at(index);
+	return s->GetFillStyle();
+}
+
+uint32_t Group::GetOutlineStyleCount() const
+{
+	return static_cast<uint32_t>(m_shapes.size());
+}
+
+IOutlineStyle& Group::GetOutlineStyle(uint32_t index) const
+{
+	auto const& s = m_shapes.at(index);
+	return s->GetOutlineStyle();
+}
+
+uint32_t Group::GetFillStyleCount() const
+{
+	return static_cast<uint32_t>(m_shapes.size());
+}
+
