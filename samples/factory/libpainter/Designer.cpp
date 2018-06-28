@@ -16,63 +16,34 @@ Designer::Designer(IShapeFactory & factory, ErrorCallback const& errorCallback)
 PictureDraft Designer::CreateDraft(std::istream & inputData)
 {
 	PictureDraft draft;
+
 	string line;
 	while (getline(inputData, line))
 	{
-		TryAddShape(draft, line);
-	}
-
-	while (!m_groups.empty())
-	{
-		PopGroupShape(draft);
+		if (line == "+group")
+		{
+			draft.AddShape(CreateDraft(inputData).MoveAsShape());
+		}
+		else if (line == "-group")
+		{
+			break;
+		}
+		else
+		{
+			TryParseShape(draft, line);
+		}
 	}
 
 	return draft;
 }
 
-void Designer::PopGroupShape(PictureDraft& draft)
-{
-	draft.AddShape(GetLastShape());
-}
-
-void Designer::InsertShape(PictureDraft& draft, IShapeUniquePtr&& shape)
-{
-	if (m_groups.empty())
-	{
-		draft.AddShape(move(shape));
-	}
-	else
-	{
-		auto& last = m_groups.back();
-		if (auto g = last->GetGroup())
-		{
-			g->InsertShape(move(shape));
-		}
-		else
-		{
-			throw std::runtime_error("Invalid shape type");
-		}
-	}
-}
-
-void Designer::TryAddShape(PictureDraft& draft, std::string const& shapeDescr)
+void Designer::TryParseShape(PictureDraft& draft, std::string const& shapeDescr)
 {
 	try
 	{
-		if (shapeDescr == "-group")
+		if (auto shape = m_factory.CreateShape(shapeDescr))
 		{
-			PopGroupShape(draft);
-		}
-		else if (auto shape = m_factory.CreateShape(shapeDescr))
-		{
-			if (auto g = shape->GetGroup())
-			{
-				m_groups.emplace_back(move(shape));
-			}
-			else
-			{
-				InsertShape(draft, move(shape));			
-			}
+			draft.AddShape(move(shape));
 		}
 	}
 	catch (std::exception const& e)
@@ -81,14 +52,3 @@ void Designer::TryAddShape(PictureDraft& draft, std::string const& shapeDescr)
 	}
 }
 
-IShapeUniquePtr Designer::GetLastShape()
-{
-	if (m_groups.empty())
-	{
-		throw std::runtime_error("No groups");
-	}
-
-	auto last = move(m_groups.back());
-	m_groups.pop_back();
-	return last;
-}

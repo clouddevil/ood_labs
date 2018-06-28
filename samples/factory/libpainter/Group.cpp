@@ -8,6 +8,13 @@ Group::Group()
 {
 }
 
+Group::Group(ShapeStorage&& shapes)
+	: m_fillStyle(*this)
+	, m_outlineStyle(*this)	
+{
+	std::swap(m_shapes, shapes);
+}
+
 void Group::Accept(IShapeVisitor& visitor) const
 {
 	for (auto& s : m_shapes)

@@ -119,10 +119,6 @@ IShapeUniquePtr ShapeFactroy::CreateShape(const std::string & description)
 	if (shapeType == "ellipse")
 	{
 		return CreateEllipse(tokens.begin(), tokens.end());
-	}	
-	if (shapeType == "+group")
-	{
-		return std::make_unique<Group>();
-	}	
+	}
 	throw std::runtime_error("Unknown shape description");
 }

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PictureDraft.h"
+#include "Group.h"
 
 bool PictureDraft::IsEmpty() const
 {
@@ -27,6 +28,11 @@ void PictureDraft::AddShape(IShapeUniquePtr&& shape)
 IShape& PictureDraft::GetShapeAtIndex(uint32_t index)
 {
 	return *m_shapes.at(index);
+}
+
+IShapeUniquePtr PictureDraft::MoveAsShape()
+{
+	return std::make_unique<Group>(move(m_shapes));
 }
 
 

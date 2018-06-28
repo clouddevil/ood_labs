@@ -14,11 +14,10 @@ public:
 	PictureDraft CreateDraft(std::istream & inputData);
 
 private:
-	void PopGroupShape(PictureDraft& shape);
-	void InsertShape(PictureDraft& draft, IShapeUniquePtr&& shape);
-	void TryAddShape(PictureDraft& draft, std::string const& shapeDescr);
+	//void PopGroupShape(PictureDraft& shape);
+	//void InsertShape(PictureDraft& draft, IShapeUniquePtr&& shape);
+	void TryParseShape(PictureDraft& draft, std::string const& shapeDescr);
 
-	IShapeUniquePtr GetLastShape();
 
 private:
 	IShapeFactory & m_factory;

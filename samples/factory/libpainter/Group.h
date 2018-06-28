@@ -10,6 +10,8 @@ class Group
 {
 public:
 	Group();
+	Group(ShapeStorage&& shapes);
+
 	// IGroup
 	void Accept(IShapeVisitor& visitor) const override;
 

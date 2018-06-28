@@ -9,8 +9,8 @@ public:
 
 	bool IsEmpty()const;
 
-	ShapeIterator begin()const;
-	ShapeIterator end()const;
+	ShapeIterator begin()const override;
+	ShapeIterator end()const override;
 
 	void AddShape(IShapeUniquePtr&& shape);
 
@@ -21,6 +21,8 @@ public:
 
 	PictureDraft(const PictureDraft &) = delete;
 	PictureDraft& operator=(const PictureDraft &) = delete;
+
+	IShapeUniquePtr MoveAsShape();
 
 private:
 	ShapeStorage m_shapes;
